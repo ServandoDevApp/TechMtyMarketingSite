@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechMty</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⌨️</text></svg>"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --tmty-bg: #f7f7f5;
+        --tmty-surface: #ffffff;
+        --tmty-surface-soft: #f1f1ef;
+        --tmty-border: #ddddda;
+        --tmty-border-soft: #ebebe8;
+        --tmty-text: #111111;
+        --tmty-text-muted: #5f5f5a;
+        --tmty-black: #000000;
+        --tmty-gray-100: #f5f5f5;
+        --tmty-gray-200: #e7e7e7;
+        --tmty-gray-300: #d2d2d2;
+        --tmty-gray-500: #7f7f7f;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: var(--tmty-bg);
+        color: var(--tmty-text);
+        font-family: "Inter", sans-serif;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      .navbar-brand,
+      .nav-link,
+      .btn {
+        font-family: "Satoshi", "Inter", sans-serif;
+      }
+
+      .navbar {
+        background-color: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--tmty-border-soft);
+        height: 72px;
+        display: flex;
+        align-items: center;
+      }
+
+      .navbar-brand {
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: var(--tmty-black);
+      }
+
+      .brand-icon {
+        flex-shrink: 0;
+      }
+
+      .nav-link {
+        color: var(--tmty-text-muted);
+        font-weight: 500;
+      }
+
+      .nav-link:hover,
+      .nav-link:focus {
+        color: var(--tmty-black);
+      }
+
+      .hero {
+        height: calc(100vh - 72px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          180deg,
+          #000000 0%,
+          #151515 35%,
+          #444444 62%,
+          #d8d8d8 88%,
+          #f7f7f5 100%
+        );
+        color: #ffffff;
+        text-align: center;
+      }
+
+      .hero-title {
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      .hero-subtitle {
+        color: rgba(255, 255, 255, 0.86);
+        max-width: 760px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        margin-bottom: 2rem;
+      }
+
+      .section-divider {
+        width: min(92%, 1200px);
+        height: 1px;
+        margin: 0 auto;
+        background: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0.18),
+          rgba(0, 0, 0, 0)
+        );
+      }
+
+      #overview p {
+        font-size: 1.1rem;
+        color: var(--tmty-text-muted);
+        line-height: 1.7;
+      }
+
+      .info-card,
+      .service-card,
+      .contact-card {
+        background-color: var(--tmty-surface);
+        border: 1px solid var(--tmty-border);
+        border-radius: 1rem;
+        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.04);
+      }
+
+      .info-card {
+        height: 100%;
+      }
+
+      .info-card h4 {
+        font-weight: 700;
+      }
+
+      .info-card p {
+        color: var(--tmty-text-muted);
+      }
+
+      .carousel-wrapper {
+        position: relative;
+        padding: 0 3.5rem;
+      }
+
+      .service-card {
+        min-height: 360px;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .service-card:hover {
+        box-shadow: 0 1.25rem 2rem rgba(0, 0, 0, 0.08);
+      }
+
+      .service-card-media {
+        width: 100%;
+        max-width: 140px;
+        height: 140px;
+        margin: 0 auto 1.25rem;
+        display: block;
+      }
+
+      .service-card h5 {
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .service-card p {
+        color: var(--tmty-text-muted);
+      }
+
+      .carousel-control-prev,
+      .carousel-control-next {
+        width: 3rem;
+        opacity: 1;
+      }
+
+      .carousel-control-prev {
+        left: -0.5rem;
+      }
+
+      .carousel-control-next {
+        right: -0.5rem;
+      }
+
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        filter: brightness(0) saturate(100%);
+        background-size: 100% 100%;
+        width: 2rem;
+        height: 2rem;
+      }
+
+      .carousel-indicators {
+        position: static;
+        margin-top: 1.75rem;
+        margin-bottom: 0;
+      }
+
+      .carousel-indicators [data-bs-target] {
+        width: 40px;
+        height: 3px;
+        border: 0;
+        border-radius: 999px;
+        background-color: var(--tmty-gray-300);
+        opacity: 1;
+        margin: 0 0.35rem;
+      }
+
+      .carousel-indicators .active {
+        background-color: var(--tmty-black);
+      }
+
+      .contact-card {
+        max-width: 760px;
+        margin: 0 auto;
+      }
+
+      .contact-card p {
+        color: var(--tmty-text-muted);
+      }
+
+      .btn-primary {
+        background-color: transparent;
+        border: 1px solid var(--tmty-black);
+        color: var(--tmty-black);
+        font-weight: 700;
+      }
+
+      .btn-primary:hover,
+      .btn-primary:focus {
+        background-color: var(--tmty-black);
+        border-color: var(--tmty-black);
+        color: #ffffff;
+      }
+
+      .btn-outline-dark {
+        background-color: transparent;
+        border: 1px solid var(--tmty-black);
+        color: var(--tmty-black);
+        font-weight: 700;
+      }
+
+      .btn-outline-dark:hover,
+      .btn-outline-dark:focus {
+        background-color: var(--tmty-black);
+        border-color: var(--tmty-black);
+        color: #ffffff;
+      }
+
+      .whatsapp-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #25d366;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        z-index: 1050;
+        box-shadow: 0 0.75rem 1.25rem rgba(0, 0, 0, 0.18);
+
+        i {
+          font-size: 1.75rem;
+          line-height: 1;
+        }
+      }
+
+      @media (max-width: 991.98px) {
+        .carousel-wrapper {
+          padding: 0 2.75rem;
+        }
+      }
+
+      @media (max-width: 575.98px) {
+        .carousel-wrapper {
+          padding: 0 2.25rem;
+        }
+
+        .hero {
+          min-height: 70vh;
+        }
+
+        .service-card {
+          min-height: 330px;
+        }
+
+        .service-card-media {
+          max-width: 120px;
+          height: 120px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 64 64"
+            xmlns="http://www.w3.org/2000/svg"
+            class="brand-icon"
+            aria-hidden="true"
+          >
+            <!-- Background -->
+            <rect width="64" height="64" rx="14" fill="#111111" />
+
+            <!-- Mountain (Cerro style) -->
+            <path
+              d="M12 44 L26 26 L34 34 L44 20 L52 44 Z"
+              fill="#ffffff"
+              opacity="0.95"
+            />
+
+            <!-- Tech nodes -->
+            <circle cx="26" cy="26" r="2.5" fill="#111111" />
+            <circle cx="34" cy="34" r="2.5" fill="#111111" />
+            <circle cx="44" cy="20" r="2.5" fill="#111111" />
+
+            <!-- Connections -->
+            <path
+              d="M26 26 L34 34 L44 20"
+              stroke="#111111"
+              stroke-width="1.5"
+              fill="none"
+            />
+          </svg>
+          <span>TechMty</span>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#nav"
+          aria-controls="nav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="nav" class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="#about">
+                <i class="bi bi-question-circle"></i>
+                <span data-i18n="navAbout">About Us</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link d-flex align-items-center gap-2"
+                href="#contact"
+              >
+                <i class="bi bi-mailbox"></i>
+                <span data-i18n="navContact">Contact Us</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link fw-bold"
+                href="#"
+                id="langSwitch"
+                onclick="toggleLanguage(event)"
+              >
+                🇲🇽 ES
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="container">
+        <h1 class="display-2 hero-title mb-3" data-i18n="heroTitle">
+          Digital Solutions for Modern Businesses
+        </h1>
+
+        <p class="lead hero-subtitle mb-0" data-i18n="heroSubtitle">
+          Transforming ideas into scalable software products
+        </p>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="overview" class="py-5">
+      <div class="container">
+        <h2 class="text-center section-title" data-i18n="overviewTitle">
+          What We Do
+        </h2>
+
+        <p
+          class="text-center mx-auto"
+          style="max-width: 720px"
+          data-i18n="overviewText"
+        >
+          We help startups, small businesses, and entrepreneurs build, scale,
+          and optimize digital products. From idea to deployment, we design and
+          develop high-quality software solutions that drive growth, improve
+          efficiency, and create real business impact.
+        </p>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="about" class="py-5">
+      <div class="container">
+        <h2 class="text-center section-title" data-i18n="aboutTitle">
+          About Us
+        </h2>
+
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="info-card p-4">
+              <h4 class="mb-3" data-i18n="missionTitle">Mission</h4>
+              <p class="mb-0" data-i18n="missionText">
+                Help small businesses, startups, and entrepreneurs enter the
+                digital world through high-quality software solutions, enabling
+                them to grow and scale effectively.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="info-card p-4">
+              <h4 class="mb-3" data-i18n="visionTitle">Vision</h4>
+              <p class="mb-0" data-i18n="visionText">
+                Become a leading tech partner in digital transformation,
+                building future-ready software for companies ready to evolve.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="services" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center section-title" data-i18n="servicesTitle">
+          Our Services
+        </h2>
+
+        <div class="carousel-wrapper">
+          <div
+            id="servicesCarousel"
+            class="carousel slide"
+            data-bs-interval="false"
+          >
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row g-4 justify-content-center">
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="card service-card h-100 text-center p-4">
+                      <svg
+                        class="service-card-media"
+                        viewBox="0 0 160 160"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                      >
+                        <rect
+                          x="12"
+                          y="12"
+                          width="136"
+                          height="136"
+                          rx="28"
+                          fill="#f1f1ef"
+                        />
+                        <circle cx="80" cy="80" r="34" fill="#e0e0dc" />
+                        <path
+                          d="M80 38l10 18 21 3-15 15 4 21-20-10-20 10 4-21-15-15 21-3 10-18z"
+                          fill="#111111"
+                        />
+                        <path
+                          d="M39 122c11-10 27-16 41-16s30 6 41 16"
+                          fill="none"
+                          stroke="#4f4f4f"
+                          stroke-width="8"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                      <h5 class="fw-bold mb-3" data-i18n="service1Title">
+                        Digital Transformation
+                      </h5>
+                      <p class="mb-0" data-i18n="service1Text">
+                        Modernize your business processes and accelerate growth
+                        through digital solutions.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="card service-card h-100 text-center p-4">
+                      <svg
+                        class="service-card-media"
+                        viewBox="0 0 160 160"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                      >
+                        <rect
+                          x="12"
+                          y="12"
+                          width="136"
+                          height="136"
+                          rx="28"
+                          fill="#f1f1ef"
+                        />
+                        <rect
+                          x="34"
+                          y="42"
+                          width="44"
+                          height="56"
+                          rx="8"
+                          fill="#1c1c1c"
+                        />
+                        <rect
+                          x="82"
+                          y="62"
+                          width="44"
+                          height="56"
+                          rx="8"
+                          fill="#626262"
+                        />
+                        <path
+                          d="M70 70h18"
+                          stroke="#ffffff"
+                          stroke-width="7"
+                          stroke-linecap="round"
+                        />
+                        <path
+                          d="M85 55l15 15-15 15"
+                          fill="none"
+                          stroke="#ffffff"
+                          stroke-width="7"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <h5 class="fw-bold mb-3" data-i18n="service2Title">
+                        System Migration
+                      </h5>
+                      <p class="mb-0" data-i18n="service2Text">
+                        Move your operations to scalable, modern, and reliable
+                        platforms.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="card service-card h-100 text-center p-4">
+                      <svg
+                        class="service-card-media"
+                        viewBox="0 0 160 160"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                      >
+                        <rect
+                          x="12"
+                          y="12"
+                          width="136"
+                          height="136"
+                          rx="28"
+                          fill="#f1f1ef"
+                        />
+                        <rect
+                          x="30"
+                          y="36"
+                          width="100"
+                          height="68"
+                          rx="10"
+                          fill="#111111"
+                        />
+                        <rect
+                          x="42"
+                          y="48"
+                          width="76"
+                          height="44"
+                          rx="6"
+                          fill="#ffffff"
+                        />
+                        <path
+                          d="M51 61h18M51 74h28M84 61l8 8-8 8"
+                          stroke="#4f4f4f"
+                          stroke-width="6"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          fill="none"
+                        />
+                        <rect
+                          x="55"
+                          y="114"
+                          width="50"
+                          height="8"
+                          rx="4"
+                          fill="#444444"
+                        />
+                        <rect
+                          x="44"
+                          y="124"
+                          width="72"
+                          height="8"
+                          rx="4"
+                          fill="#c6c6c1"
+                        />
+                      </svg>
+                      <h5 class="fw-bold mb-3" data-i18n="service3Title">
+                        Software Development
+                      </h5>
+                      <p class="mb-0" data-i18n="service3Text">
+                        Build custom web and mobile applications tailored to
+                        your goals.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="card service-card h-100 text-center p-4">
+                      <svg
+                        class="service-card-media"
+                        viewBox="0 0 160 160"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                      >
+                        <rect
+                          x="12"
+                          y="12"
+                          width="136"
+                          height="136"
+                          rx="28"
+                          fill="#f1f1ef"
+                        />
+                        <path
+                          d="M51 104h58a24 24 0 0 0 0-48 31 31 0 0 0-59-8 20 20 0 0 0 1 56z"
+                          fill="#111111"
+                        />
+                        <path
+                          d="M80 66v32"
+                          stroke="#ffffff"
+                          stroke-width="7"
+                          stroke-linecap="round"
+                        />
+                        <path
+                          d="M65 81l15-15 15 15"
+                          fill="none"
+                          stroke="#ffffff"
+                          stroke-width="7"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <h5 class="fw-bold mb-3" data-i18n="service4Title">
+                        Cloud Solutions
+                      </h5>
+                      <p class="mb-0" data-i18n="service4Text">
+                        Deploy, optimize, and scale your products using cloud
+                        infrastructure.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <div class="row g-4 justify-content-center">
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="card service-card h-100 text-center p-4">
+                      <svg
+                        class="service-card-media"
+                        viewBox="0 0 160 160"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                      >
+                        <rect
+                          x="12"
+                          y="12"
+                          width="136"
+                          height="136"
+                          rx="28"
+                          fill="#f1f1ef"
+                        />
+                        <circle cx="80" cy="80" r="24" fill="#111111" />
+                        <circle cx="42" cy="44" r="12" fill="#707070" />
+                        <circle cx="118" cy="44" r="12" fill="#8d8d8d" />
+                        <circle cx="42" cy="116" r="12" fill="#4c4c4c" />
+                        <circle cx="118" cy="116" r="12" fill="#2a2a2a" />
+                        <path
+                          d="M52 50l16 16M108 50L92 66M52 110l16-16M108 110L92 94"
+                          stroke="#111111"
+                          stroke-width="6"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                      <h5 class="fw-bold mb-3" data-i18n="service5Title">
+                        API Integrations
+                      </h5>
+                      <p class="mb-0" data-i18n="service5Text">
+                        Connect your systems and tools with secure and efficient
+                        integrations.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="card service-card h-100 text-center p-4">
+                      <svg
+                        class="service-card-media"
+                        viewBox="0 0 160 160"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                      >
+                        <rect
+                          x="12"
+                          y="12"
+                          width="136"
+                          height="136"
+                          rx="28"
+                          fill="#f1f1ef"
+                        />
+                        <circle cx="80" cy="80" r="30" fill="#111111" />
+                        <path
+                          d="M80 61v22l14 10"
+                          fill="none"
+                          stroke="#ffffff"
+                          stroke-width="8"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M48 112c8 8 19 13 32 13s24-5 32-13"
+                          fill="none"
+                          stroke="#5b5b5b"
+                          stroke-width="7"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                      <h5 class="fw-bold mb-3" data-i18n="service6Title">
+                        Maintenance & Support
+                      </h5>
+                      <p class="mb-0" data-i18n="service6Text">
+                        Keep your platforms stable, updated, and performing at
+                        their best.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="card service-card h-100 text-center p-4">
+                      <svg
+                        class="service-card-media"
+                        viewBox="0 0 160 160"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                      >
+                        <rect
+                          x="12"
+                          y="12"
+                          width="136"
+                          height="136"
+                          rx="28"
+                          fill="#f1f1ef"
+                        />
+                        <rect
+                          x="42"
+                          y="42"
+                          width="76"
+                          height="76"
+                          rx="14"
+                          fill="#111111"
+                        />
+                        <circle cx="80" cy="80" r="18" fill="#ffffff" />
+                        <path
+                          d="M80 69v22M69 80h22"
+                          stroke="#4a4a4a"
+                          stroke-width="7"
+                          stroke-linecap="round"
+                        />
+                        <circle cx="120" cy="40" r="14" fill="#6a6a6a" />
+                        <path
+                          d="M120 34v12M114 40h12"
+                          stroke="#ffffff"
+                          stroke-width="5"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                      <h5 class="fw-bold mb-3" data-i18n="service7Title">
+                        Technical Consulting
+                      </h5>
+                      <p class="mb-0" data-i18n="service7Text">
+                        Get strategic guidance to make better technology and
+                        architecture decisions.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="card service-card h-100 text-center p-4">
+                      <svg
+                        class="service-card-media"
+                        viewBox="0 0 160 160"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                      >
+                        <rect
+                          x="12"
+                          y="12"
+                          width="136"
+                          height="136"
+                          rx="28"
+                          fill="#f1f1ef"
+                        />
+                        <rect
+                          x="38"
+                          y="42"
+                          width="84"
+                          height="20"
+                          rx="8"
+                          fill="#111111"
+                        />
+                        <rect
+                          x="38"
+                          y="70"
+                          width="84"
+                          height="20"
+                          rx="8"
+                          fill="#555555"
+                        />
+                        <rect
+                          x="38"
+                          y="98"
+                          width="84"
+                          height="20"
+                          rx="8"
+                          fill="#8d8d8d"
+                        />
+                        <circle cx="56" cy="52" r="6" fill="#ffffff" />
+                        <circle cx="103" cy="80" r="6" fill="#ffffff" />
+                        <circle cx="83" cy="108" r="6" fill="#ffffff" />
+                        <path
+                          d="M62 52h35M38 80h59M38 108h39"
+                          stroke="#ffffff"
+                          stroke-width="5"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                      <h5 class="fw-bold mb-3" data-i18n="service8Title">
+                        Process Automation
+                      </h5>
+                      <p class="mb-0" data-i18n="service8Text">
+                        Automate repetitive tasks and improve efficiency across
+                        your business.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#servicesCarousel"
+              data-bs-slide="prev"
+              aria-label="Previous"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+            </button>
+
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#servicesCarousel"
+              data-bs-slide="next"
+              aria-label="Next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+            </button>
+
+            <div class="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#servicesCarousel"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#servicesCarousel"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="contact" class="py-5">
+      <div class="container">
+        <h2 class="text-center section-title" data-i18n="contactTitle">
+          Contact Us
+        </h2>
+
+        <div class="contact-card p-4 p-md-5 text-center">
+          <p class="mb-4" data-i18n="contactText">
+            Let’s talk about your project and how we can help you grow in the
+            digital world.
+          </p>
+
+          <div
+            class="d-flex flex-column flex-sm-row gap-3 justify-content-center"
+          >
+            <a
+              href="mailto:hello@techmty.com"
+              class="btn btn-primary d-inline-flex align-items-center justify-content-center gap-2"
+            >
+              <i class="bi bi-envelope-fill"></i>
+              <span data-i18n="contactEmail">Send us an email</span>
+            </a>
+
+            <a
+              href="https://wa.me/521XXXXXXXXXX"
+              target="_blank"
+              class="btn btn-outline-dark d-inline-flex align-items-center justify-content-center gap-2"
+            >
+              <i class="bi bi-whatsapp"></i>
+              <span data-i18n="contactWhatsapp">Chat on WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <a
+      href="https://wa.me/521XXXXXXXXXX"
+      target="_blank"
+      class="whatsapp-btn"
+      aria-label="WhatsApp"
+    >
+      <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <script>
+      /**
+       * Stores all translatable text for the landing page.
+       * Keys are matched with elements using the data-i18n attribute.
+       */
+      const translations = {
+        en: {
+          navAbout: "About Us",
+          navContact: "Contact Us",
+          heroTitle: "Digital Solutions for Modern Businesses",
+          heroSubtitle: "Transforming ideas into scalable software products",
+          overviewTitle: "What We Do",
+          overviewText:
+            "We help startups, small businesses, and entrepreneurs build, scale, and optimize digital products. From idea to deployment, we design and develop high-quality software solutions that drive growth, improve efficiency, and create real business impact.",
+          aboutTitle: "About Us",
+          missionTitle: "Mission",
+          missionText:
+            "Help small businesses, startups, and entrepreneurs enter the digital world through high-quality software solutions, enabling them to grow and scale effectively.",
+          visionTitle: "Vision",
+          visionText:
+            "Become a leading tech partner in digital transformation, building future-ready software for companies ready to evolve.",
+          servicesTitle: "Our Services",
+          service1Title: "Digital Transformation",
+          service1Text:
+            "Modernize your business processes and accelerate growth through digital solutions.",
+          service2Title: "System Migration",
+          service2Text:
+            "Move your operations to scalable, modern, and reliable platforms.",
+          service3Title: "Software Development",
+          service3Text:
+            "Build custom web and mobile applications tailored to your goals.",
+          service4Title: "Cloud Solutions",
+          service4Text:
+            "Deploy, optimize, and scale your products using cloud infrastructure.",
+          service5Title: "API Integrations",
+          service5Text:
+            "Connect your systems and tools with secure and efficient integrations.",
+          service6Title: "Maintenance & Support",
+          service6Text:
+            "Keep your platforms stable, updated, and performing at their best.",
+          service7Title: "Technical Consulting",
+          service7Text:
+            "Get strategic guidance to make better technology and architecture decisions.",
+          service8Title: "Process Automation",
+          service8Text:
+            "Automate repetitive tasks and improve efficiency across your business.",
+          contactTitle: "Contact Us",
+          contactText:
+            "Let’s talk about your project and how we can help you grow in the digital world.",
+          contactEmail: "Send us an email",
+          contactWhatsapp: "Chat on WhatsApp",
+        },
+        es: {
+          navAbout: "Nosotros",
+          navContact: "Contacto",
+          heroTitle: "Soluciones digitales para negocios modernos",
+          heroSubtitle:
+            "Transformamos ideas en productos de software escalables",
+          overviewTitle: "Qué hacemos",
+          overviewText:
+            "Ayudamos a startups, pequeñas empresas y emprendedores a construir, escalar y optimizar productos digitales. Desde la idea hasta el despliegue, diseñamos y desarrollamos soluciones de software de alta calidad que impulsan el crecimiento, mejoran la eficiencia y generan impacto real en el negocio.",
+          aboutTitle: "Nosotros",
+          missionTitle: "Misión",
+          missionText:
+            "Ayudar a pequeñas empresas, startups y emprendedores a entrar al mundo digital mediante soluciones de software de alta calidad, permitiéndoles crecer y escalar de manera efectiva.",
+          visionTitle: "Visión",
+          visionText:
+            "Ser un socio tecnológico líder en transformación digital, creando software preparado para el futuro para empresas listas para evolucionar.",
+          servicesTitle: "Nuestros Servicios",
+          service1Title: "Transformación Digital",
+          service1Text:
+            "Moderniza tus procesos de negocio y acelera tu crecimiento con soluciones digitales.",
+          service2Title: "Migración de Sistemas",
+          service2Text:
+            "Lleva tus operaciones a plataformas escalables, modernas y confiables.",
+          service3Title: "Desarrollo de Software",
+          service3Text:
+            "Construye aplicaciones web y móviles a la medida de tus objetivos.",
+          service4Title: "Soluciones en la Nube",
+          service4Text:
+            "Despliega, optimiza y escala tus productos usando infraestructura en la nube.",
+          service5Title: "Integración de APIs",
+          service5Text:
+            "Conecta tus sistemas y herramientas con integraciones seguras y eficientes.",
+          service6Title: "Mantenimiento y Soporte",
+          service6Text:
+            "Mantén tus plataformas estables, actualizadas y funcionando al máximo.",
+          service7Title: "Consultoría Técnica",
+          service7Text:
+            "Obtén guía estratégica para tomar mejores decisiones de tecnología y arquitectura.",
+          service8Title: "Automatización de Procesos",
+          service8Text:
+            "Automatiza tareas repetitivas y mejora la eficiencia de tu negocio.",
+          contactTitle: "Contacto",
+          contactText:
+            "Hablemos de tu proyecto y de cómo podemos ayudarte a crecer en el mundo digital.",
+          contactEmail: "Envíanos un correo",
+          contactWhatsapp: "Chatea por WhatsApp",
+        },
+      };
+
+      let currentLang = "en";
+
+      /**
+       * Applies the selected language to all elements with data-i18n.
+       * It also updates the language switch label to show the next language option.
+       * @param {string} lang
+       * @returns {void}
+       */
+      function applyLanguage(lang) {
+        currentLang = lang;
+
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.getAttribute("data-i18n");
+
+          if (translations[lang][key]) {
+            element.textContent = translations[lang][key];
+          }
+        });
+
+        document.documentElement.lang = lang;
+        document.getElementById("langSwitch").textContent =
+          lang === "en" ? "🇲🇽 ES" : "🇺🇸 EN";
+      }
+
+      /**
+       * Toggles the current language between English and Spanish.
+       * @param {MouseEvent} event
+       * @returns {void}
+       */
+      function toggleLanguage(event) {
+        event.preventDefault();
+        applyLanguage(currentLang === "en" ? "es" : "en");
+      }
+
+      applyLanguage("en");
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
