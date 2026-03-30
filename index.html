@@ -33,18 +33,26 @@
 
     <style>
       :root {
-        --tmty-bg: #f7f7f5;
+        --tmty-primary: #1400ff;
+        --tmty-primary-hover: #0f00cc;
+        --tmty-primary-container: #e8e5ff;
+        --tmty-on-primary: #ffffff;
+        --tmty-secondary: #ffffff;
+        --tmty-third: #000000;
+
+        --tmty-background: #f7f8fc;
         --tmty-surface: #ffffff;
-        --tmty-surface-soft: #f1f1ef;
-        --tmty-border: #ddddda;
-        --tmty-border-soft: #ebebe8;
-        --tmty-text: #111111;
-        --tmty-text-muted: #5f5f5a;
-        --tmty-black: #000000;
-        --tmty-gray-100: #f5f5f5;
-        --tmty-gray-200: #e7e7e7;
-        --tmty-gray-300: #d2d2d2;
-        --tmty-gray-500: #7f7f7f;
+        --tmty-surface-variant: #f3f4fa;
+        --tmty-surface-container: #eef0ff;
+
+        --tmty-outline: #d9dced;
+        --tmty-outline-strong: #b9bfd8;
+
+        --tmty-on-surface: #151515;
+        --tmty-on-surface-variant: #5d647c;
+
+        --tmty-shadow: 0 10px 30px rgba(20, 0, 255, 0.08);
+        --tmty-shadow-hover: 0 18px 38px rgba(20, 0, 255, 0.16);
       }
 
       html {
@@ -52,8 +60,8 @@
       }
 
       body {
-        background-color: var(--tmty-bg);
-        color: var(--tmty-text);
+        background-color: var(--tmty-background);
+        color: var(--tmty-on-surface);
         font-family: "Inter", sans-serif;
       }
 
@@ -71,8 +79,8 @@
 
       .navbar {
         background-color: rgba(255, 255, 255, 0.92);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid var(--tmty-border-soft);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--tmty-outline);
         height: 72px;
         display: flex;
         align-items: center;
@@ -81,7 +89,7 @@
       .navbar-brand {
         font-weight: 700;
         letter-spacing: 0.02em;
-        color: var(--tmty-black);
+        color: var(--tmty-third);
       }
 
       .brand-icon {
@@ -89,13 +97,14 @@
       }
 
       .nav-link {
-        color: var(--tmty-text-muted);
+        color: var(--tmty-on-surface-variant);
         font-weight: 500;
+        transition: color 0.2s ease;
       }
 
       .nav-link:hover,
       .nav-link:focus {
-        color: var(--tmty-black);
+        color: var(--tmty-primary);
       }
 
       .hero {
@@ -103,33 +112,52 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(
-          180deg,
-          #000000 0%,
-          #151515 35%,
-          #444444 62%,
-          #d8d8d8 88%,
-          #f7f7f5 100%
-        );
+        background:
+          radial-gradient(circle at top center, rgba(255, 255, 255, 0.08), transparent 30%),
+          linear-gradient(
+            180deg,
+            #09004d 0%,
+            #1400ff 42%,
+            #5a4fff 72%,
+            #dfe3ff 92%,
+            #f7f8fc 100%
+          );
         color: #ffffff;
         text-align: center;
       }
 
       .hero-title {
         font-weight: 700;
-        letter-spacing: -0.03em;
+        letter-spacing: -0.04em;
       }
 
       .hero-subtitle {
-        color: rgba(255, 255, 255, 0.86);
+        color: rgba(255, 255, 255, 0.9);
         max-width: 760px;
         margin: 0 auto;
       }
 
       .section-title {
+        position: relative;
+        display: inline-block;
         font-weight: 700;
         letter-spacing: -0.03em;
         margin-bottom: 2rem;
+        color: var(--tmty-on-surface);
+      }
+
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 72px;
+        height: 4px;
+        border-radius: 999px;
+        margin: 0.75rem auto 0;
+        background: linear-gradient(
+          90deg,
+          var(--tmty-primary),
+          rgba(20, 0, 255, 0.2)
+        );
       }
 
       .section-divider {
@@ -138,15 +166,15 @@
         margin: 0 auto;
         background: linear-gradient(
           to right,
-          rgba(0, 0, 0, 0),
-          rgba(0, 0, 0, 0.18),
-          rgba(0, 0, 0, 0)
+          rgba(20, 0, 255, 0),
+          rgba(20, 0, 255, 0.2),
+          rgba(20, 0, 255, 0)
         );
       }
 
       #overview p {
         font-size: 1.1rem;
-        color: var(--tmty-text-muted);
+        color: var(--tmty-on-surface-variant);
         line-height: 1.7;
       }
 
@@ -154,21 +182,30 @@
       .service-card,
       .contact-card {
         background-color: var(--tmty-surface);
-        border: 1px solid var(--tmty-border);
+        border: 1px solid var(--tmty-outline);
         border-radius: 1rem;
-        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.04);
+        box-shadow: var(--tmty-shadow);
       }
 
       .info-card {
         height: 100%;
+        transition: border-color 0.25s ease, box-shadow 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      .info-card:hover {
+        border-color: rgba(20, 0, 255, 0.28);
+        box-shadow: var(--tmty-shadow-hover);
+        transform: translateY(-4px);
       }
 
       .info-card h4 {
         font-weight: 700;
+        color: var(--tmty-primary);
       }
 
       .info-card p {
-        color: var(--tmty-text-muted);
+        color: var(--tmty-on-surface-variant);
       }
 
       .carousel-wrapper {
@@ -178,11 +215,14 @@
 
       .service-card {
         min-height: 360px;
-        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        transition: box-shadow 0.25s ease, border-color 0.25s ease,
+          transform 0.25s ease;
       }
 
       .service-card:hover {
-        box-shadow: 0 1.25rem 2rem rgba(0, 0, 0, 0.08);
+        border-color: rgba(20, 0, 255, 0.3);
+        box-shadow: var(--tmty-shadow-hover);
+        transform: translateY(-6px);
       }
 
       .service-card-media {
@@ -196,10 +236,11 @@
       .service-card h5 {
         font-weight: 700;
         letter-spacing: -0.02em;
+        color: var(--tmty-on-surface);
       }
 
       .service-card p {
-        color: var(--tmty-text-muted);
+        color: var(--tmty-on-surface-variant);
       }
 
       .carousel-control-prev,
@@ -218,10 +259,19 @@
 
       .carousel-control-prev-icon,
       .carousel-control-next-icon {
-        filter: brightness(0) saturate(100%);
+        filter: none;
         background-size: 100% 100%;
         width: 2rem;
         height: 2rem;
+        background-color: transparent;
+      }
+
+      .carousel-control-prev-icon {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%231400ff' viewBox='0 0 16 16'%3E%3Cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E");
+      }
+
+      .carousel-control-next-icon {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%231400ff' viewBox='0 0 16 16'%3E%3Cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
       }
 
       .carousel-indicators {
@@ -232,53 +282,67 @@
 
       .carousel-indicators [data-bs-target] {
         width: 40px;
-        height: 3px;
+        height: 4px;
         border: 0;
         border-radius: 999px;
-        background-color: var(--tmty-gray-300);
+        background-color: #cfd5ef;
         opacity: 1;
         margin: 0 0.35rem;
       }
 
       .carousel-indicators .active {
-        background-color: var(--tmty-black);
+        background-color: var(--tmty-primary);
       }
 
       .contact-card {
         max-width: 760px;
         margin: 0 auto;
+        background: linear-gradient(
+          180deg,
+          rgba(20, 0, 255, 0.04),
+          rgba(255, 255, 255, 1)
+        );
       }
 
       .contact-card p {
-        color: var(--tmty-text-muted);
+        color: var(--tmty-on-surface-variant);
       }
 
       .btn-primary {
-        background-color: transparent;
-        border: 1px solid var(--tmty-black);
-        color: var(--tmty-black);
+        background-color: var(--tmty-primary);
+        border: 1px solid var(--tmty-primary);
+        color: var(--tmty-on-primary);
         font-weight: 700;
+        box-shadow: 0 10px 22px rgba(20, 0, 255, 0.22);
       }
 
       .btn-primary:hover,
       .btn-primary:focus {
-        background-color: var(--tmty-black);
-        border-color: var(--tmty-black);
-        color: #ffffff;
+        background-color: var(--tmty-primary-hover);
+        border-color: var(--tmty-primary-hover);
+        color: var(--tmty-on-primary);
       }
 
       .btn-outline-dark {
         background-color: transparent;
-        border: 1px solid var(--tmty-black);
-        color: var(--tmty-black);
+        border: 1px solid var(--tmty-primary);
+        color: var(--tmty-primary);
         font-weight: 700;
       }
 
       .btn-outline-dark:hover,
       .btn-outline-dark:focus {
-        background-color: var(--tmty-black);
-        border-color: var(--tmty-black);
-        color: #ffffff;
+        background-color: var(--tmty-primary);
+        border-color: var(--tmty-primary);
+        color: var(--tmty-on-primary);
+      }
+
+      .btn:focus-visible,
+      .nav-link:focus-visible,
+      .navbar-brand:focus-visible {
+        outline: 3px solid rgba(20, 0, 255, 0.25);
+        outline-offset: 3px;
+        box-shadow: none;
       }
 
       .whatsapp-btn {
@@ -296,11 +360,11 @@
         text-decoration: none;
         z-index: 1050;
         box-shadow: 0 0.75rem 1.25rem rgba(0, 0, 0, 0.18);
+      }
 
-        i {
-          font-size: 1.75rem;
-          line-height: 1;
-        }
+      .whatsapp-btn i {
+        font-size: 1.75rem;
+        line-height: 1;
       }
 
       @media (max-width: 991.98px) {
@@ -334,37 +398,7 @@
     <nav class="navbar navbar-expand-lg sticky-top">
       <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-          <svg
-            width="28"
-            height="28"
-            viewBox="0 0 64 64"
-            xmlns="http://www.w3.org/2000/svg"
-            class="brand-icon"
-            aria-hidden="true"
-          >
-            <!-- Background -->
-            <rect width="64" height="64" rx="14" fill="#111111" />
-
-            <!-- Mountain (Cerro style) -->
-            <path
-              d="M12 44 L26 26 L34 34 L44 20 L52 44 Z"
-              fill="#ffffff"
-              opacity="0.95"
-            />
-
-            <!-- Tech nodes -->
-            <circle cx="26" cy="26" r="2.5" fill="#111111" />
-            <circle cx="34" cy="34" r="2.5" fill="#111111" />
-            <circle cx="44" cy="20" r="2.5" fill="#111111" />
-
-            <!-- Connections -->
-            <path
-              d="M26 26 L34 34 L44 20"
-              stroke="#111111"
-              stroke-width="1.5"
-              fill="none"
-            />
-          </svg>
+          <img src="./logo.png" width="28" height="28" alt="TechMty Logo">
           <span>TechMty</span>
         </a>
 
@@ -401,12 +435,13 @@
 
             <li class="nav-item">
               <a
-                class="nav-link fw-bold"
+                class="nav-link fw-bold d-flex align-items-center gap-2"
                 href="#"
                 id="langSwitch"
                 onclick="toggleLanguage(event)"
               >
-                🇲🇽 ES
+                <i class="bi bi-translate"></i>
+                <span>🇲🇽 ES</span>
               </a>
             </li>
           </ul>
@@ -430,9 +465,9 @@
 
     <section id="overview" class="py-5">
       <div class="container">
-        <h2 class="text-center section-title" data-i18n="overviewTitle">
-          What We Do
-        </h2>
+        <div class="text-center">
+          <h2 class="section-title" data-i18n="overviewTitle">What We Do</h2>
+        </div>
 
         <p
           class="text-center mx-auto"
@@ -451,9 +486,9 @@
 
     <section id="about" class="py-5">
       <div class="container">
-        <h2 class="text-center section-title" data-i18n="aboutTitle">
-          About Us
-        </h2>
+        <div class="text-center">
+          <h2 class="section-title" data-i18n="aboutTitle">About Us</h2>
+        </div>
 
         <div class="row g-4">
           <div class="col-md-6">
@@ -482,11 +517,13 @@
 
     <div class="section-divider"></div>
 
-    <section id="services" class="py-5 bg-light">
+    <section id="services" class="py-5">
       <div class="container">
-        <h2 class="text-center section-title" data-i18n="servicesTitle">
-          Our Services
-        </h2>
+        <div class="text-center">
+          <h2 class="section-title" data-i18n="servicesTitle">
+            Our Services
+          </h2>
+        </div>
 
         <div class="carousel-wrapper">
           <div
@@ -511,17 +548,17 @@
                           width="136"
                           height="136"
                           rx="28"
-                          fill="#f1f1ef"
+                          fill="#eef0ff"
                         />
-                        <circle cx="80" cy="80" r="34" fill="#e0e0dc" />
+                        <circle cx="80" cy="80" r="34" fill="#d7d3ff" />
                         <path
                           d="M80 38l10 18 21 3-15 15 4 21-20-10-20 10 4-21-15-15 21-3 10-18z"
-                          fill="#111111"
+                          fill="#1400ff"
                         />
                         <path
                           d="M39 122c11-10 27-16 41-16s30 6 41 16"
                           fill="none"
-                          stroke="#4f4f4f"
+                          stroke="#000000"
                           stroke-width="8"
                           stroke-linecap="round"
                         />
@@ -550,7 +587,7 @@
                           width="136"
                           height="136"
                           rx="28"
-                          fill="#f1f1ef"
+                          fill="#eef0ff"
                         />
                         <rect
                           x="34"
@@ -558,7 +595,7 @@
                           width="44"
                           height="56"
                           rx="8"
-                          fill="#1c1c1c"
+                          fill="#000000"
                         />
                         <rect
                           x="82"
@@ -566,7 +603,7 @@
                           width="44"
                           height="56"
                           rx="8"
-                          fill="#626262"
+                          fill="#1400ff"
                         />
                         <path
                           d="M70 70h18"
@@ -607,7 +644,7 @@
                           width="136"
                           height="136"
                           rx="28"
-                          fill="#f1f1ef"
+                          fill="#eef0ff"
                         />
                         <rect
                           x="30"
@@ -615,7 +652,7 @@
                           width="100"
                           height="68"
                           rx="10"
-                          fill="#111111"
+                          fill="#000000"
                         />
                         <rect
                           x="42"
@@ -627,7 +664,7 @@
                         />
                         <path
                           d="M51 61h18M51 74h28M84 61l8 8-8 8"
-                          stroke="#4f4f4f"
+                          stroke="#1400ff"
                           stroke-width="6"
                           stroke-linecap="round"
                           stroke-linejoin="round"
@@ -639,7 +676,7 @@
                           width="50"
                           height="8"
                           rx="4"
-                          fill="#444444"
+                          fill="#1400ff"
                         />
                         <rect
                           x="44"
@@ -647,7 +684,7 @@
                           width="72"
                           height="8"
                           rx="4"
-                          fill="#c6c6c1"
+                          fill="#cbd1ff"
                         />
                       </svg>
                       <h5 class="fw-bold mb-3" data-i18n="service3Title">
@@ -674,11 +711,11 @@
                           width="136"
                           height="136"
                           rx="28"
-                          fill="#f1f1ef"
+                          fill="#eef0ff"
                         />
                         <path
                           d="M51 104h58a24 24 0 0 0 0-48 31 31 0 0 0-59-8 20 20 0 0 0 1 56z"
-                          fill="#111111"
+                          fill="#1400ff"
                         />
                         <path
                           d="M80 66v32"
@@ -723,16 +760,16 @@
                           width="136"
                           height="136"
                           rx="28"
-                          fill="#f1f1ef"
+                          fill="#eef0ff"
                         />
-                        <circle cx="80" cy="80" r="24" fill="#111111" />
-                        <circle cx="42" cy="44" r="12" fill="#707070" />
-                        <circle cx="118" cy="44" r="12" fill="#8d8d8d" />
-                        <circle cx="42" cy="116" r="12" fill="#4c4c4c" />
-                        <circle cx="118" cy="116" r="12" fill="#2a2a2a" />
+                        <circle cx="80" cy="80" r="24" fill="#1400ff" />
+                        <circle cx="42" cy="44" r="12" fill="#000000" />
+                        <circle cx="118" cy="44" r="12" fill="#7066ff" />
+                        <circle cx="42" cy="116" r="12" fill="#5d647c" />
+                        <circle cx="118" cy="116" r="12" fill="#1400ff" />
                         <path
                           d="M52 50l16 16M108 50L92 66M52 110l16-16M108 110L92 94"
-                          stroke="#111111"
+                          stroke="#000000"
                           stroke-width="6"
                           stroke-linecap="round"
                         />
@@ -761,9 +798,9 @@
                           width="136"
                           height="136"
                           rx="28"
-                          fill="#f1f1ef"
+                          fill="#eef0ff"
                         />
-                        <circle cx="80" cy="80" r="30" fill="#111111" />
+                        <circle cx="80" cy="80" r="30" fill="#000000" />
                         <path
                           d="M80 61v22l14 10"
                           fill="none"
@@ -775,7 +812,7 @@
                         <path
                           d="M48 112c8 8 19 13 32 13s24-5 32-13"
                           fill="none"
-                          stroke="#5b5b5b"
+                          stroke="#1400ff"
                           stroke-width="7"
                           stroke-linecap="round"
                         />
@@ -804,7 +841,7 @@
                           width="136"
                           height="136"
                           rx="28"
-                          fill="#f1f1ef"
+                          fill="#eef0ff"
                         />
                         <rect
                           x="42"
@@ -812,16 +849,16 @@
                           width="76"
                           height="76"
                           rx="14"
-                          fill="#111111"
+                          fill="#1400ff"
                         />
                         <circle cx="80" cy="80" r="18" fill="#ffffff" />
                         <path
                           d="M80 69v22M69 80h22"
-                          stroke="#4a4a4a"
+                          stroke="#000000"
                           stroke-width="7"
                           stroke-linecap="round"
                         />
-                        <circle cx="120" cy="40" r="14" fill="#6a6a6a" />
+                        <circle cx="120" cy="40" r="14" fill="#000000" />
                         <path
                           d="M120 34v12M114 40h12"
                           stroke="#ffffff"
@@ -853,7 +890,7 @@
                           width="136"
                           height="136"
                           rx="28"
-                          fill="#f1f1ef"
+                          fill="#eef0ff"
                         />
                         <rect
                           x="38"
@@ -861,7 +898,7 @@
                           width="84"
                           height="20"
                           rx="8"
-                          fill="#111111"
+                          fill="#1400ff"
                         />
                         <rect
                           x="38"
@@ -869,7 +906,7 @@
                           width="84"
                           height="20"
                           rx="8"
-                          fill="#555555"
+                          fill="#000000"
                         />
                         <rect
                           x="38"
@@ -877,7 +914,7 @@
                           width="84"
                           height="20"
                           rx="8"
-                          fill="#8d8d8d"
+                          fill="#7066ff"
                         />
                         <circle cx="56" cy="52" r="6" fill="#ffffff" />
                         <circle cx="103" cy="80" r="6" fill="#ffffff" />
@@ -953,9 +990,9 @@
 
     <section id="contact" class="py-5">
       <div class="container">
-        <h2 class="text-center section-title" data-i18n="contactTitle">
-          Contact Us
-        </h2>
+        <div class="text-center">
+          <h2 class="section-title" data-i18n="contactTitle">Contact Us</h2>
+        </div>
 
         <div class="contact-card p-4 p-md-5 text-center">
           <p class="mb-4" data-i18n="contactText">
@@ -967,7 +1004,7 @@
             class="d-flex flex-column flex-sm-row gap-3 justify-content-center"
           >
             <a
-              href="mailto:hello@techmty.com"
+              href="mailto:ventas@techmty.com"
               class="btn btn-primary d-inline-flex align-items-center justify-content-center gap-2"
             >
               <i class="bi bi-envelope-fill"></i>
@@ -975,7 +1012,7 @@
             </a>
 
             <a
-              href="https://wa.me/521XXXXXXXXXX"
+              href="https://wa.me/528117985690"
               target="_blank"
               class="btn btn-outline-dark d-inline-flex align-items-center justify-content-center gap-2"
             >
@@ -988,7 +1025,7 @@
     </section>
 
     <a
-      href="https://wa.me/521XXXXXXXXXX"
+      href="https://wa.me/528117985690"
       target="_blank"
       class="whatsapp-btn"
       aria-label="WhatsApp"
@@ -1046,7 +1083,7 @@
           contactText:
             "Let’s talk about your project and how we can help you grow in the digital world.",
           contactEmail: "Send us an email",
-          contactWhatsapp: "Chat on WhatsApp",
+          contactWhatsapp: "Chat on WhatsApp"
         },
         es: {
           navAbout: "Nosotros",
@@ -1093,15 +1130,14 @@
           contactText:
             "Hablemos de tu proyecto y de cómo podemos ayudarte a crecer en el mundo digital.",
           contactEmail: "Envíanos un correo",
-          contactWhatsapp: "Chatea por WhatsApp",
-        },
+          contactWhatsapp: "Chatea por WhatsApp"
+        }
       };
 
       let currentLang = "en";
 
       /**
        * Applies the selected language to all elements with data-i18n.
-       * It also updates the language switch label to show the next language option.
        * @param {string} lang
        * @returns {void}
        */
@@ -1117,7 +1153,7 @@
         });
 
         document.documentElement.lang = lang;
-        document.getElementById("langSwitch").textContent =
+        document.querySelector("#langSwitch span").textContent =
           lang === "en" ? "🇲🇽 ES" : "🇺🇸 EN";
       }
 
