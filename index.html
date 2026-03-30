@@ -377,6 +377,69 @@
         height: 120px;
       }
     }
+
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .client-card {
+      height: 100%;
+      background-color: var(--tmty-surface);
+      border: 1px solid var(--tmty-outline);
+      border-radius: 1rem;
+      box-shadow: var(--tmty-shadow);
+      transition: box-shadow 0.25s ease, border-color 0.25s ease,
+        transform 0.25s ease;
+    }
+
+    .client-card:hover {
+      border-color: rgba(20, 0, 255, 0.3);
+      box-shadow: var(--tmty-shadow-hover);
+      transform: translateY(-6px);
+    }
+
+    .client-badge {
+      width: 56px;
+      height: 56px;
+      border-radius: 1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--tmty-primary-container);
+      color: var(--tmty-primary);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .client-card h5 {
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--tmty-on-surface);
+    }
+
+    .client-card p {
+      margin-bottom: 0;
+      color: var(--tmty-on-surface-variant);
+      line-height: 1.65;
+    }
+
+    .client-card-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 0.875rem;
+      margin-bottom: 1.25rem;
+      border: 1px solid var(--tmty-outline);
+      box-shadow: var(--tmty-shadow);
+    }
+
+    @media (max-width: 767.98px) {
+      .clients-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 
@@ -688,6 +751,49 @@
 
   <div class="section-divider"></div>
 
+  <section id="clients" class="py-5">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-title" data-i18n="clientsTitle">Our Clients</h2>
+      </div>
+
+      <div class="clients-grid">
+        <div class="client-card p-4 p-md-5">
+          <img src="./coconos-bakery.png" alt="Coconos Bakery point of sale and payments software"
+            class="client-card-image" />
+
+          <div class="client-badge">
+            <i class="bi bi-bag-heart"></i>
+          </div>
+
+          <h5 data-i18n="client1Title">Coconos Bakery</h5>
+          <p data-i18n="client1Text">
+            We helped Coconos Bakery digitalize its sales process, improving order
+            management, operational visibility, and day-to-day efficiency.
+          </p>
+        </div>
+
+        <div class="client-card p-4 p-md-5">
+          <img src="./libros-magistrales.png" alt="Libros Magistrales ERP dashboard for sales and administration"
+            class="client-card-image" />
+
+          <div class="client-badge">
+            <i class="bi bi-journal-bookmark"></i>
+          </div>
+
+          <h5 data-i18n="client2Title">Libros Magistrales</h5>
+          <p data-i18n="client2Text">
+            We helped Libros Magistrales, a company focused on selling books to
+            schools, by building an ERP to manage internal processes,
+            administration, and operational workflows.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
   <section id="contact" class="py-5">
     <div class="container">
       <div class="text-center">
@@ -771,7 +877,14 @@
         contactText:
           "Let’s talk about your project and how we can help you grow in the digital world.",
         contactEmail: "Send us an email",
-        contactWhatsapp: "Chat on WhatsApp"
+        contactWhatsapp: "Chat on WhatsApp",
+        clientsTitle: "Our Clients",
+        client1Title: "Coconos Bakery",
+        client1Text:
+          "We helped Coconos Bakery digitalize its sales process, improving order management, operational visibility, and day-to-day efficiency.",
+        client2Title: "Libros Magistrales",
+        client2Text:
+          "We helped Libros Magistrales, a company focused on selling books to schools, by building an ERP to manage internal processes, administration, and operational workflows.",
       },
       es: {
         navAbout: "Nosotros",
@@ -818,7 +931,14 @@
         contactText:
           "Hablemos de tu proyecto y de cómo podemos ayudarte a crecer en el mundo digital.",
         contactEmail: "Envíanos un correo",
-        contactWhatsapp: "Chatea por WhatsApp"
+        contactWhatsapp: "Chatea por WhatsApp",
+        clientsTitle: "Nuestros Clientes",
+        client1Title: "Coconos Bakery",
+        client1Text:
+          "Ayudamos a Coconos Bakery a digitalizar su proceso de ventas, mejorando la gestión de pedidos, la visibilidad operativa y la eficiencia del día a día.",
+        client2Title: "Libros Magistrales",
+        client2Text:
+          "Ayudamos a Libros Magistrales, una empresa enfocada en la venta de libros a escuelas, mediante el desarrollo de un ERP para administrar sus procesos internos, su operación y su gestión administrativa.",
       }
     };
 
