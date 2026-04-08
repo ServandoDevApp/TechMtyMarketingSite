@@ -44,10 +44,11 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 0;
     }
 
     section[id] {
-      scroll-margin-top: 112px;
+      scroll-margin-top: 0;
     }
 
     body {
@@ -102,7 +103,6 @@
         box-shadow 0.3s ease, backdrop-filter 0.3s ease;
     }
 
-    .navbar.navbar-scrolled,
     .navbar.mobile-menu-open {
       background: rgba(5, 8, 22, 0.74);
       border-bottom-color: rgba(255, 255, 255, 0.08);
@@ -225,9 +225,9 @@
       position: relative;
       min-height: 100vh;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       overflow: hidden;
-      padding: clamp(7rem, 11vw, 8.8rem) 0 clamp(4.5rem, 8vw, 6.5rem);
+      padding: clamp(8.6rem, 12vw, 10rem) 0 clamp(3rem, 6vw, 4.8rem);
       background:
         radial-gradient(circle at 18% 18%, rgba(123, 114, 255, 0.35), transparent 24%),
         radial-gradient(circle at 82% 18%, rgba(82, 221, 255, 0.24), transparent 18%),
@@ -983,21 +983,835 @@
 
     .site-content {
       position: relative;
-      padding-bottom: 5rem;
+      isolation: isolate;
+      background:
+        radial-gradient(circle at 16% 18%, rgba(123, 114, 255, 0.22), transparent 24%),
+        radial-gradient(circle at 84% 20%, rgba(82, 221, 255, 0.16), transparent 18%),
+        radial-gradient(circle at 52% 110%, rgba(255, 255, 255, 0.12), transparent 42%),
+        linear-gradient(180deg, #040816 0%, #07102a 34%, #050919 100%);
     }
 
-    .site-content::before {
+    .site-content::before,
+    .site-content::after {
       content: "";
       position: absolute;
       inset: 0;
       pointer-events: none;
+    }
+
+    .site-content::before {
       background-image:
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 120px 120px;
-      opacity: 0.25;
-      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.18), #000000 18%, #000000 82%, transparent);
-      -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.18), #000000 18%, #000000 82%, transparent);
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 108px 108px;
+      opacity: 0.3;
+      mask-image: radial-gradient(circle at center, #000000 40%, transparent 88%);
+      -webkit-mask-image: radial-gradient(circle at center, #000000 40%, transparent 88%);
+    }
+
+    .site-content::after {
+      background:
+        radial-gradient(circle at 20% 20%, rgba(103, 220, 255, 0.08), transparent 18%),
+        radial-gradient(circle at 78% 26%, rgba(127, 114, 255, 0.12), transparent 22%);
+      opacity: 0.9;
+    }
+
+    @keyframes visualFloat {
+      0%,
+      100% {
+        transform: translate3d(0, 0, 0);
+      }
+
+      50% {
+        transform: translate3d(0, -12px, 0);
+      }
+    }
+
+    @keyframes pulseGlow {
+      0%,
+      100% {
+        opacity: 0.45;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.85;
+        transform: scale(1.08);
+      }
+    }
+
+    @keyframes ringSpin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes signalSweep {
+      0% {
+        transform: translateX(-16%);
+      }
+
+      100% {
+        transform: translateX(64%);
+      }
+    }
+
+    .snap-section,
+    .hero {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    .snap-section {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 100svh;
+      padding: clamp(5.8rem, 10vh, 7rem) 0;
+      overflow: hidden;
+    }
+
+    .snap-section::before,
+    .snap-section::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(34px);
+      opacity: 0.46;
+    }
+
+    .section-overview::before {
+      width: 280px;
+      height: 280px;
+      right: 10%;
+      top: 18%;
+      background: radial-gradient(circle at center,
+          rgba(82, 221, 255, 0.22),
+          transparent 74%);
+    }
+
+    .section-overview::after {
+      width: 340px;
+      height: 340px;
+      left: -10%;
+      bottom: -18%;
+      background: radial-gradient(circle at center,
+          rgba(127, 114, 255, 0.18),
+          transparent 76%);
+    }
+
+    .section-about::before {
+      width: 320px;
+      height: 320px;
+      left: 8%;
+      top: 14%;
+      background: radial-gradient(circle at center,
+          rgba(123, 114, 255, 0.16),
+          transparent 76%);
+    }
+
+    .section-services::before {
+      width: 380px;
+      height: 380px;
+      right: -6%;
+      top: 2%;
+      background: radial-gradient(circle at center,
+          rgba(82, 221, 255, 0.16),
+          transparent 74%);
+    }
+
+    .section-clients::before {
+      width: 320px;
+      height: 320px;
+      right: 6%;
+      top: 16%;
+      background: radial-gradient(circle at center,
+          rgba(103, 220, 255, 0.18),
+          transparent 74%);
+    }
+
+    .section-contact::before {
+      width: 340px;
+      height: 340px;
+      left: -6%;
+      bottom: 0;
+      background: radial-gradient(circle at center,
+          rgba(127, 114, 255, 0.2),
+          transparent 78%);
+    }
+
+    .snap-shell {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(340px, 0.88fr);
+      align-items: center;
+      gap: clamp(2rem, 5vw, 4rem);
+    }
+
+    .snap-shell-services {
+      grid-template-columns: 1fr;
+      align-content: center;
+      gap: 2rem;
+    }
+
+    .snap-shell-clients {
+      grid-template-columns: minmax(0, 0.88fr) minmax(360px, 0.92fr);
+    }
+
+    .snap-copy {
+      max-width: 560px;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.72rem 1rem;
+      margin-bottom: 1.15rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      background: rgba(8, 14, 42, 0.44);
+      color: rgba(241, 245, 255, 0.92);
+      font-family: "Satoshi", "Inter", sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      box-shadow: 0 18px 34px rgba(5, 8, 22, 0.16);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .section-kicker i {
+      color: #8ee8ff;
+      font-size: 0.95rem;
+    }
+
+    .snap-title {
+      max-width: 11ch;
+      margin: 0;
+      font-family: "Satoshi", "Inter", sans-serif;
+      font-size: clamp(3rem, 5.2vw, 5.1rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+      color: #ffffff;
+      text-wrap: balance;
+    }
+
+    .snap-title::after {
+      content: "";
+      display: block;
+      width: 84px;
+      height: 4px;
+      margin-top: 1rem;
+      border-radius: 999px;
+      background: linear-gradient(90deg,
+          #67dcff,
+          rgba(127, 114, 255, 0.2));
+    }
+
+    .snap-text {
+      margin: 1.5rem 0 0;
+      color: rgba(223, 230, 255, 0.8);
+      font-size: 1.08rem;
+      line-height: 1.85;
+      text-wrap: pretty;
+    }
+
+    .metric-rail {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .metric-chip,
+    .info-pane,
+    .service-tile,
+    .client-case,
+    .contact-panel,
+    .contact-link {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1.4rem;
+      background: linear-gradient(180deg,
+          rgba(10, 16, 38, 0.9),
+          rgba(6, 10, 24, 0.96));
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 22px 42px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .metric-chip {
+      padding: 1.15rem 1.2rem;
+    }
+
+    .metric-chip strong,
+    .metric-chip span {
+      display: block;
+    }
+
+    .metric-chip strong {
+      margin-bottom: 0.35rem;
+      color: #ffffff;
+      font-family: "Satoshi", "Inter", sans-serif;
+      font-size: 1.18rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .metric-chip span {
+      color: rgba(223, 230, 255, 0.7);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .snap-visual {
+      position: relative;
+      min-height: min(58vh, 560px);
+    }
+
+    .overview-visual {
+      display: grid;
+      place-items: center;
+    }
+
+    .overview-board {
+      position: relative;
+      width: min(100%, 520px);
+      aspect-ratio: 1 / 0.9;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 2rem;
+      background:
+        radial-gradient(circle at 22% 24%, rgba(82, 221, 255, 0.12), transparent 24%),
+        linear-gradient(180deg, rgba(7, 13, 34, 0.82), rgba(4, 8, 22, 0.94));
+      box-shadow: 0 26px 50px rgba(0, 0, 0, 0.22);
+      overflow: hidden;
+    }
+
+    .overview-board::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+      opacity: 0.3;
+    }
+
+    .overview-signal {
+      position: absolute;
+      inset: 18% 12% auto;
+      height: 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .overview-signal::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg,
+          rgba(255, 255, 255, 0),
+          rgba(103, 220, 255, 0.8),
+          rgba(127, 114, 255, 0.75),
+          rgba(255, 255, 255, 0));
+      animation: signalSweep 5.8s linear infinite;
+    }
+
+    .overview-stack {
+      position: absolute;
+      inset: 28% 10% 10%;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      align-items: end;
+    }
+
+    .overview-mini-card {
+      padding: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1.25rem;
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      animation: visualFloat 6.5s ease-in-out infinite;
+    }
+
+    .overview-mini-card:nth-child(2) {
+      animation-delay: -1.6s;
+    }
+
+    .overview-mini-card:nth-child(3) {
+      animation-delay: -2.6s;
+    }
+
+    .overview-mini-card span,
+    .overview-mini-card strong {
+      display: block;
+    }
+
+    .overview-mini-card strong {
+      margin-bottom: 0.45rem;
+      color: #ffffff;
+      font-family: "Satoshi", "Inter", sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .overview-mini-card span {
+      height: 0.62rem;
+      margin-bottom: 0.45rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .overview-mini-card span:last-child {
+      width: 72%;
+      margin-bottom: 0;
+    }
+
+    .about-layout {
+      position: relative;
+      display: grid;
+      gap: 1rem;
+      padding-left: 2rem;
+    }
+
+    .about-layout::before {
+      content: "";
+      position: absolute;
+      left: 0.65rem;
+      top: 8%;
+      bottom: 8%;
+      width: 2px;
+      background: linear-gradient(180deg,
+          rgba(103, 220, 255, 0),
+          rgba(103, 220, 255, 0.46),
+          rgba(127, 114, 255, 0.5),
+          rgba(127, 114, 255, 0));
+    }
+
+    .about-layout::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 48%;
+      width: 1.3rem;
+      height: 1.3rem;
+      border-radius: 50%;
+      background: radial-gradient(circle at center,
+          rgba(103, 220, 255, 0.8),
+          rgba(103, 220, 255, 0.08));
+      box-shadow: 0 0 22px rgba(103, 220, 255, 0.45);
+      animation: pulseGlow 4.6s ease-in-out infinite;
+    }
+
+    .info-pane {
+      padding: 1.35rem 1.4rem;
+      animation: visualFloat 6.8s ease-in-out infinite;
+    }
+
+    .info-pane:nth-child(2) {
+      animation-delay: -1.8s;
+    }
+
+    .info-pane-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.9rem;
+      height: 2.9rem;
+      margin-bottom: 1rem;
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.08);
+      color: #8ee8ff;
+      font-size: 1.1rem;
+    }
+
+    .info-pane h4,
+    .service-tile h5,
+    .client-case h5,
+    .contact-panel h3 {
+      margin: 0 0 0.8rem;
+      color: #ffffff;
+      font-family: "Satoshi", "Inter", sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .info-pane p,
+    .service-tile p,
+    .client-case p,
+    .contact-panel p {
+      margin: 0;
+      color: rgba(223, 230, 255, 0.72);
+      line-height: 1.72;
+    }
+
+    .services-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(260px, 0.55fr);
+      align-items: end;
+      gap: 1.5rem 2rem;
+    }
+
+    .services-orbit {
+      position: relative;
+      width: min(100%, 280px);
+      height: 180px;
+      margin-left: auto;
+    }
+
+    .services-ring {
+      position: absolute;
+      inset: 8% 10%;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+      animation: ringSpin 18s linear infinite;
+    }
+
+    .services-ring::before {
+      content: "";
+      position: absolute;
+      top: 6%;
+      left: 20%;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffffff, #67dcff);
+      box-shadow: 0 0 18px rgba(103, 220, 255, 0.65);
+    }
+
+    .services-ring-alt {
+      inset: 22% 18%;
+      animation-duration: 22s;
+      animation-direction: reverse;
+    }
+
+    .services-ring-alt::before {
+      top: auto;
+      bottom: 10%;
+      left: auto;
+      right: 18%;
+      background: linear-gradient(135deg, #cfd4ff, #7f72ff);
+      box-shadow: 0 0 18px rgba(127, 114, 255, 0.5);
+    }
+
+    .services-chip {
+      position: absolute;
+      padding: 0.65rem 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      background: rgba(8, 14, 42, 0.42);
+      color: rgba(241, 245, 255, 0.9);
+      font-family: "Satoshi", "Inter", sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      box-shadow: 0 18px 32px rgba(5, 8, 22, 0.16);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      animation: visualFloat 7s ease-in-out infinite;
+    }
+
+    .services-chip-a {
+      left: 0;
+      top: 8%;
+    }
+
+    .services-chip-b {
+      right: 2%;
+      top: 28%;
+      animation-delay: -1.6s;
+    }
+
+    .services-chip-c {
+      left: 16%;
+      bottom: 2%;
+      animation-delay: -3s;
+    }
+
+    .service-tile-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .service-tile {
+      min-height: 178px;
+      padding: 1.1rem;
+      transition: transform 0.28s ease, border-color 0.28s ease,
+        box-shadow 0.28s ease;
+    }
+
+    .service-tile:hover {
+      transform: translateY(-6px);
+      border-color: rgba(103, 220, 255, 0.2);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 28px 50px rgba(0, 0, 0, 0.22);
+    }
+
+    .service-tile-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 3.1rem;
+      height: 3.1rem;
+      margin-bottom: 0.9rem;
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.08);
+      color: #8ee8ff;
+      font-size: 1.1rem;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      animation: visualFloat 6.2s ease-in-out infinite;
+    }
+
+    .service-tile:nth-child(2) .service-tile-icon {
+      animation-delay: -1.2s;
+    }
+
+    .service-tile:nth-child(3) .service-tile-icon {
+      animation-delay: -2.1s;
+    }
+
+    .service-tile:nth-child(4) .service-tile-icon {
+      animation-delay: -2.8s;
+    }
+
+    .service-tile:nth-child(5) .service-tile-icon {
+      animation-delay: -3.5s;
+    }
+
+    .service-tile h5 {
+      font-size: 1rem;
+    }
+
+    .service-tile p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .clients-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.88fr) minmax(340px, 0.92fr);
+      gap: clamp(2rem, 4vw, 3rem);
+      align-items: center;
+    }
+
+    .client-case-list {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.75rem;
+    }
+
+    .client-case {
+      display: grid;
+      grid-template-columns: 132px minmax(0, 1fr);
+      gap: 1rem;
+      padding: 1rem;
+      align-items: center;
+      transition: transform 0.28s ease, border-color 0.28s ease,
+        box-shadow 0.28s ease;
+    }
+
+    .client-case:hover {
+      transform: translateY(-6px);
+      border-color: rgba(103, 220, 255, 0.2);
+    }
+
+    .client-thumb {
+      width: 100%;
+      height: 112px;
+      object-fit: cover;
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 16px 28px rgba(0, 0, 0, 0.18);
+    }
+
+    .client-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.6rem;
+      height: 2.6rem;
+      margin-bottom: 0.7rem;
+      border-radius: 0.9rem;
+      background: rgba(255, 255, 255, 0.08);
+      color: #8ee8ff;
+      font-size: 1rem;
+    }
+
+    .clients-visual {
+      display: grid;
+      place-items: center;
+    }
+
+    .clients-handshake {
+      width: min(100%, 500px);
+      filter: drop-shadow(0 24px 44px rgba(0, 0, 0, 0.24));
+    }
+
+    .clients-handshake .person-left,
+    .clients-handshake .person-right {
+      animation: visualFloat 6.6s ease-in-out infinite;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .clients-handshake .person-right {
+      animation-delay: -1.8s;
+    }
+
+    .clients-handshake .handshake-spark {
+      animation: pulseGlow 3.8s ease-in-out infinite;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+
+    .contact-layout-full {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(340px, 0.82fr);
+      gap: clamp(2rem, 4vw, 3rem);
+      align-items: center;
+    }
+
+    .contact-column {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .contact-panel {
+      padding: 1.4rem;
+    }
+
+    .contact-pill-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      width: fit-content;
+      padding: 0.7rem 0.95rem;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(241, 245, 255, 0.92);
+      font-family: "Satoshi", "Inter", sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 1rem 1.1rem;
+      color: #ffffff;
+      text-decoration: none;
+      transition: transform 0.28s ease, border-color 0.28s ease,
+        box-shadow 0.28s ease, background-color 0.28s ease;
+    }
+
+    .contact-link:hover,
+    .contact-link:focus {
+      color: #ffffff;
+      transform: translateY(-4px);
+      border-color: rgba(103, 220, 255, 0.22);
+      background: rgba(12, 20, 54, 0.5);
+    }
+
+    .contact-link i {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.9rem;
+      height: 2.9rem;
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.08);
+      color: #8ee8ff;
+      font-size: 1rem;
+    }
+
+    .contact-link span {
+      font-family: "Satoshi", "Inter", sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .contact-visual {
+      position: relative;
+      min-height: 320px;
+      display: grid;
+      place-items: center;
+    }
+
+    .contact-radar {
+      position: relative;
+      width: min(100%, 320px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background:
+        radial-gradient(circle at center, rgba(103, 220, 255, 0.12), transparent 54%),
+        linear-gradient(180deg, rgba(8, 14, 42, 0.52), rgba(4, 8, 22, 0.86));
+      box-shadow: 0 26px 46px rgba(0, 0, 0, 0.22);
+      overflow: hidden;
+    }
+
+    .contact-radar::before,
+    .contact-radar::after {
+      content: "";
+      position: absolute;
+      inset: 12%;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+    }
+
+    .contact-radar::after {
+      inset: 28%;
+    }
+
+    .contact-radar-sweep {
+      position: absolute;
+      inset: -10%;
+      background: conic-gradient(from 0deg,
+          rgba(255, 255, 255, 0) 0deg,
+          rgba(103, 220, 255, 0.22) 46deg,
+          rgba(255, 255, 255, 0) 92deg);
+      animation: ringSpin 8s linear infinite;
+    }
+
+    .contact-radar-dot {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffffff, #67dcff);
+      box-shadow: 0 0 18px rgba(103, 220, 255, 0.55);
+      animation: pulseGlow 4.4s ease-in-out infinite;
+    }
+
+    .contact-radar-dot-a {
+      top: 22%;
+      left: 58%;
+    }
+
+    .contact-radar-dot-b {
+      bottom: 24%;
+      left: 28%;
+      animation-delay: -1.8s;
+    }
+
+    .contact-radar-dot-c {
+      top: 52%;
+      right: 18%;
+      animation-delay: -3s;
     }
 
     .content-section {
@@ -1687,9 +2501,236 @@
       }
     }
 
+    @media (min-width: 992px) {
+      html {
+        scroll-snap-type: y mandatory;
+      }
+
+      body {
+        overscroll-behavior-y: contain;
+      }
+
+      .hero {
+        min-height: 100svh;
+        height: auto;
+      }
+
+      .snap-section {
+        min-height: 100svh;
+        height: 100svh;
+      }
+
+      .snap-shell,
+      .clients-layout,
+      .contact-layout-full {
+        min-height: calc(100svh - clamp(9.4rem, 12vh, 10.2rem));
+      }
+
+      .snap-shell-services {
+        min-height: calc(100svh - clamp(9.4rem, 12vh, 10.2rem));
+        align-content: center;
+      }
+
+      .service-tile {
+        min-height: 154px;
+        padding: 1rem;
+      }
+
+      .service-tile h5 {
+        margin-bottom: 0.6rem;
+      }
+
+      .service-tile p {
+        font-size: 0.88rem;
+        line-height: 1.52;
+      }
+    }
+
+    @media (min-width: 992px) and (max-height: 860px) {
+      .hero {
+        padding-top: 8.2rem;
+        padding-bottom: 2.2rem;
+      }
+
+      .hero-eyebrow {
+        margin-bottom: 1rem;
+        padding: 0.62rem 0.9rem;
+        font-size: 0.88rem;
+      }
+
+      .hero-title {
+        margin-bottom: 0.9rem;
+        font-size: clamp(2.7rem, 5vw, 4.45rem);
+        max-width: 11ch;
+      }
+
+      .hero-subtitle {
+        margin-bottom: 1.35rem;
+        font-size: 1rem;
+        line-height: 1.58;
+      }
+
+      .hero-actions {
+        gap: 0.8rem;
+        margin-bottom: 1.35rem;
+      }
+
+      .btn-hero-primary,
+      .btn-hero-secondary {
+        min-height: 52px;
+        padding: 0.78rem 1.2rem;
+      }
+
+      .hero-highlights {
+        gap: 0.75rem;
+      }
+
+      .hero-highlight {
+        padding: 0.8rem 0.9rem;
+      }
+
+      .hero-highlight i {
+        width: 2.1rem;
+        height: 2.1rem;
+        margin-bottom: 0.6rem;
+        font-size: 0.95rem;
+      }
+
+      .hero-highlight span {
+        font-size: 0.9rem;
+      }
+
+      .hero-visual {
+        min-height: min(56vh, 480px);
+      }
+
+      .hero-stage {
+        width: min(100%, 580px);
+      }
+
+      .hero-floating-card {
+        padding: 0.75rem 0.9rem;
+        font-size: 0.88rem;
+      }
+    }
+
+    @media (max-width: 1199.98px) {
+      .snap-shell,
+      .clients-layout,
+      .contact-layout-full {
+        grid-template-columns: 1fr;
+      }
+
+      .snap-copy {
+        max-width: 100%;
+      }
+
+      .snap-title {
+        max-width: 12ch;
+      }
+
+      .snap-visual,
+      .contact-visual {
+        min-height: 340px;
+      }
+
+      .services-head {
+        grid-template-columns: 1fr;
+        align-items: flex-start;
+      }
+
+      .services-orbit {
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 991.98px) {
+      html {
+        scroll-snap-type: none;
+      }
+
+      body {
+        overscroll-behavior-y: auto;
+      }
+
+      .snap-section {
+        min-height: auto;
+        height: auto;
+        padding: 4.5rem 0;
+      }
+
+      .snap-shell,
+      .clients-layout,
+      .contact-layout-full {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .metric-rail {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .service-tile-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .snap-visual,
+      .contact-visual {
+        min-height: 300px;
+      }
+    }
+
+    @media (max-width: 767.98px) {
+      .snap-copy {
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .section-kicker,
+      .contact-pill-inline {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .snap-title {
+        max-width: none;
+      }
+
+      .snap-title::after {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .metric-rail,
+      .service-tile-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .client-case {
+        grid-template-columns: 1fr;
+      }
+
+      .clients-handshake {
+        width: min(100%, 420px);
+      }
+
+      .about-layout {
+        padding-left: 1.4rem;
+      }
+
+      .about-layout::before {
+        left: 0.4rem;
+      }
+
+      .about-layout::after {
+        left: -0.22rem;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html {
         scroll-behavior: auto;
+        scroll-snap-type: none;
       }
 
       .hero-orbit,
@@ -1697,12 +2738,30 @@
       .laptop-float,
       .laptop-sway,
       .laptop-display::before,
+      .overview-signal::before,
+      .overview-mini-card,
+      .about-layout::after,
+      .info-pane,
+      .services-ring,
+      .services-chip,
+      .service-tile-icon,
+      .clients-handshake .person-left,
+      .clients-handshake .person-right,
+      .clients-handshake .handshake-spark,
+      .contact-radar-sweep,
+      .contact-radar-dot,
       .service-card::before,
       .service-card-media {
         animation: none;
       }
 
       .laptop-assembly,
+      .metric-chip,
+      .info-pane,
+      .service-tile,
+      .client-case,
+      .contact-panel,
+      .contact-link,
       .service-card,
       .reveal-on-scroll {
         transition: none;
@@ -1717,7 +2776,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg sticky-top">
+  <nav class="navbar navbar-expand-lg">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center gap-2" href="#">
         <img src="./logo.png" width="28" height="28" alt="TechMty Logo">
@@ -1885,93 +2944,68 @@
   </section>
 
   <main class="site-content">
-    <div class="section-divider"></div>
+    <section id="overview" class="snap-section section-overview" data-snap-section>
+      <div class="container snap-shell">
+        <div class="snap-copy reveal-on-scroll">
+          <span class="section-kicker">
+            <i class="bi bi-stars"></i>
+            <span data-i18n="overviewBadge">What we build</span>
+          </span>
 
-    <section id="overview" class="content-section">
-      <div class="container">
-        <div class="section-shell reveal-on-scroll">
-          <div class="section-header">
-            <div>
-              <span class="section-badge">
-                <i class="bi bi-stars"></i>
-                <span data-i18n="overviewBadge">What we build</span>
-              </span>
-              <h2 class="section-title" data-i18n="overviewTitle">What We Do</h2>
-            </div>
+          <h2 class="snap-title" data-i18n="overviewTitle">What We Do</h2>
 
-            <p class="section-copy" data-i18n="overviewText">
-              We help startups, small businesses, and entrepreneurs build, scale,
-              and optimize digital products. From idea to deployment, we design and
-              develop high-quality software solutions that drive growth, improve
-              efficiency, and create real business impact.
-            </p>
-          </div>
+          <p class="snap-text" data-i18n="overviewText">
+            We help startups, small businesses, and entrepreneurs build, scale,
+            and optimize digital products. From idea to deployment, we design and
+            develop high-quality software solutions that drive growth, improve
+            efficiency, and create real business impact.
+          </p>
 
-          <div class="overview-metrics">
-            <div class="overview-metric reveal-on-scroll">
+          <div class="metric-rail">
+            <div class="metric-chip reveal-on-scroll">
               <strong data-i18n="overviewMetric1Value">End-to-end</strong>
               <span data-i18n="overviewMetric1Label">Product delivery</span>
             </div>
 
-            <div class="overview-metric reveal-on-scroll">
+            <div class="metric-chip reveal-on-scroll">
               <strong data-i18n="overviewMetric2Value">Automation</strong>
               <span data-i18n="overviewMetric2Label">for real operations</span>
             </div>
 
-            <div class="overview-metric reveal-on-scroll">
+            <div class="metric-chip reveal-on-scroll">
               <strong data-i18n="overviewMetric3Value">Long-term</strong>
               <span data-i18n="overviewMetric3Label">technical partnership</span>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <div class="section-divider"></div>
+        <div class="snap-visual overview-visual reveal-on-scroll" aria-hidden="true">
+          <div class="overview-board">
+            <div class="overview-signal"></div>
 
-    <section id="about" class="content-section">
-      <div class="container">
-        <div class="section-shell reveal-on-scroll">
-          <div class="section-header">
-            <div>
-              <span class="section-badge">
-                <i class="bi bi-diagram-3"></i>
-                <span data-i18n="aboutBadge">How we work</span>
-              </span>
-              <h2 class="section-title" data-i18n="aboutTitle">About Us</h2>
-            </div>
-
-            <p class="section-copy" data-i18n="aboutIntro">
-              We work closely with founders and operators to ship focused software experiences that feel refined on the
-              surface and dependable underneath.
-            </p>
-          </div>
-
-          <div class="row g-4">
-            <div class="col-lg-6">
-              <div class="info-card p-4 p-lg-5 reveal-on-scroll">
-                <div class="info-card-icon">
-                  <i class="bi bi-bullseye"></i>
-                </div>
-                <h4 class="mb-3" data-i18n="missionTitle">Mission</h4>
-                <p class="mb-0" data-i18n="missionText">
-                  Help small businesses, startups, and entrepreneurs enter the
-                  digital world through high-quality software solutions, enabling
-                  them to grow and scale effectively.
-                </p>
+            <div class="overview-stack">
+              <div class="overview-mini-card">
+                <strong>Discover</strong>
+                <span></span>
+                <span></span>
               </div>
-            </div>
 
-            <div class="col-lg-6">
-              <div class="info-card p-4 p-lg-5 reveal-on-scroll">
-                <div class="info-card-icon">
-                  <i class="bi bi-binoculars"></i>
-                </div>
-                <h4 class="mb-3" data-i18n="visionTitle">Vision</h4>
-                <p class="mb-0" data-i18n="visionText">
-                  Become a leading tech partner in digital transformation,
-                  building future-ready software for companies ready to evolve.
-                </p>
+              <div class="overview-mini-card">
+                <strong>Build</strong>
+                <span></span>
+                <span></span>
+              </div>
+
+              <div class="overview-mini-card">
+                <strong>Launch</strong>
+                <span></span>
+                <span></span>
+              </div>
+
+              <div class="overview-mini-card">
+                <strong>Scale</strong>
+                <span></span>
+                <span></span>
               </div>
             </div>
           </div>
@@ -1979,324 +3013,256 @@
       </div>
     </section>
 
-    <div class="section-divider"></div>
+    <section id="about" class="snap-section section-about" data-snap-section>
+      <div class="container snap-shell">
+        <div class="snap-copy reveal-on-scroll">
+          <span class="section-kicker">
+            <i class="bi bi-diagram-3"></i>
+            <span data-i18n="aboutBadge">How we work</span>
+          </span>
 
-    <section id="services" class="content-section">
-      <div class="container">
-        <div class="section-shell reveal-on-scroll">
-          <div class="section-header">
-            <div>
-              <span class="section-badge">
-                <i class="bi bi-grid-1x2"></i>
-                <span data-i18n="servicesBadge">Capabilities</span>
-              </span>
-              <h2 class="section-title" data-i18n="servicesTitle">
-                Our Services
-              </h2>
+          <h2 class="snap-title" data-i18n="aboutTitle">About Us</h2>
+
+          <p class="snap-text" data-i18n="aboutIntro">
+            We work closely with founders and operators to ship focused software experiences that feel refined on the
+            surface and dependable underneath.
+          </p>
+        </div>
+
+        <div class="about-layout">
+          <article class="info-pane reveal-on-scroll">
+            <div class="info-pane-icon">
+              <i class="bi bi-bullseye"></i>
             </div>
+            <h4 data-i18n="missionTitle">Mission</h4>
+            <p data-i18n="missionText">
+              Help small businesses, startups, and entrepreneurs enter the
+              digital world through high-quality software solutions, enabling
+              them to grow and scale effectively.
+            </p>
+          </article>
 
-            <p class="section-copy" data-i18n="servicesIntro">
+          <article class="info-pane reveal-on-scroll">
+            <div class="info-pane-icon">
+              <i class="bi bi-binoculars"></i>
+            </div>
+            <h4 data-i18n="visionTitle">Vision</h4>
+            <p data-i18n="visionText">
+              Become a leading tech partner in digital transformation,
+              building future-ready software for companies ready to evolve.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="snap-section section-services" data-snap-section>
+      <div class="container snap-shell snap-shell-services">
+        <div class="services-head">
+          <div class="snap-copy reveal-on-scroll">
+            <span class="section-kicker">
+              <i class="bi bi-grid-1x2"></i>
+              <span data-i18n="servicesBadge">Capabilities</span>
+            </span>
+
+            <h2 class="snap-title" data-i18n="servicesTitle">Our Services</h2>
+
+            <p class="snap-text" data-i18n="servicesIntro">
               From modernization to cloud and automation, we design systems that feel elegant for users and resilient
               for the teams running them.
             </p>
           </div>
 
-          <div class="services-stage">
-            <div class="services-stage-glow services-stage-glow-a"></div>
-            <div class="services-stage-glow services-stage-glow-b"></div>
-
-            <div class="carousel-wrapper">
-              <div id="servicesCarousel" class="carousel slide" data-bs-interval="false">
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <div class="row g-4 justify-content-center">
-                      <div class="col-12  col-md-6 col-lg-3">
-                        <div class="card service-card h-100 text-center p-4">
-                          <svg class="service-card-media" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"
-                            aria-hidden="true">
-                            <rect x="12" y="12" width="136" height="136" rx="28" fill="#eef0ff" />
-                            <circle cx="80" cy="80" r="34" fill="#d7d3ff" />
-                            <path d="M80 38l10 18 21 3-15 15 4 21-20-10-20 10 4-21-15-15 21-3 10-18z" fill="#1400ff" />
-                            <path d="M39 122c11-10 27-16 41-16s30 6 41 16" fill="none" stroke="#000000"
-                              stroke-width="8" stroke-linecap="round" />
-                          </svg>
-                          <h5 class="fw-bold mb-3" data-i18n="service1Title">
-                            Digital Transformation
-                          </h5>
-                          <p class="mb-0" data-i18n="service1Text">
-                            Modernize your business processes and accelerate growth
-                            through digital solutions.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div class="col-12 col-md-6 col-lg-3">
-                        <div class="card service-card h-100 text-center p-4">
-                          <svg class="service-card-media" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"
-                            aria-hidden="true">
-                            <rect x="12" y="12" width="136" height="136" rx="28" fill="#eef0ff" />
-                            <rect x="34" y="42" width="44" height="56" rx="8" fill="#000000" />
-                            <rect x="82" y="62" width="44" height="56" rx="8" fill="#1400ff" />
-                            <path d="M70 70h18" stroke="#ffffff" stroke-width="7" stroke-linecap="round" />
-                            <path d="M85 55l15 15-15 15" fill="none" stroke="#ffffff" stroke-width="7"
-                              stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                          <h5 class="fw-bold mb-3" data-i18n="service2Title">
-                            System Migration
-                          </h5>
-                          <p class="mb-0" data-i18n="service2Text">
-                            Move your operations to scalable, modern, and reliable
-                            platforms.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div class="col-12 col-md-6 col-lg-3">
-                        <div class="card service-card h-100 text-center p-4">
-                          <svg class="service-card-media" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"
-                            aria-hidden="true">
-                            <rect x="12" y="12" width="136" height="136" rx="28" fill="#eef0ff" />
-                            <rect x="30" y="36" width="100" height="68" rx="10" fill="#000000" />
-                            <rect x="42" y="48" width="76" height="44" rx="6" fill="#ffffff" />
-                            <path d="M51 61h18M51 74h28M84 61l8 8-8 8" stroke="#1400ff" stroke-width="6"
-                              stroke-linecap="round" stroke-linejoin="round" fill="none" />
-                            <rect x="55" y="114" width="50" height="8" rx="4" fill="#1400ff" />
-                            <rect x="44" y="124" width="72" height="8" rx="4" fill="#cbd1ff" />
-                          </svg>
-                          <h5 class="fw-bold mb-3" data-i18n="service3Title">
-                            Software Development
-                          </h5>
-                          <p class="mb-0" data-i18n="service3Text">
-                            Build custom web and mobile applications tailored to
-                            your goals.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div class="col-12 col-md-6 col-lg-3">
-                        <div class="card service-card h-100 text-center p-4">
-                          <svg class="service-card-media" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"
-                            aria-hidden="true">
-                            <rect x="12" y="12" width="136" height="136" rx="28" fill="#eef0ff" />
-                            <path d="M51 104h58a24 24 0 0 0 0-48 31 31 0 0 0-59-8 20 20 0 0 0 1 56z"
-                              fill="#1400ff" />
-                            <path d="M80 66v32" stroke="#ffffff" stroke-width="7" stroke-linecap="round" />
-                            <path d="M65 81l15-15 15 15" fill="none" stroke="#ffffff" stroke-width="7"
-                              stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                          <h5 class="fw-bold mb-3" data-i18n="service4Title">
-                            Cloud Solutions
-                          </h5>
-                          <p class="mb-0" data-i18n="service4Text">
-                            Deploy, optimize, and scale your products using cloud
-                            infrastructure.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="carousel-item">
-                    <div class="row g-4 justify-content-center">
-                      <div class="col-12 col-md-6 col-lg-3">
-                        <div class="card service-card h-100 text-center p-4">
-                          <svg class="service-card-media" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"
-                            aria-hidden="true">
-                            <rect x="12" y="12" width="136" height="136" rx="28" fill="#eef0ff" />
-                            <circle cx="80" cy="80" r="24" fill="#1400ff" />
-                            <circle cx="42" cy="44" r="12" fill="#000000" />
-                            <circle cx="118" cy="44" r="12" fill="#7066ff" />
-                            <circle cx="42" cy="116" r="12" fill="#5d647c" />
-                            <circle cx="118" cy="116" r="12" fill="#1400ff" />
-                            <path d="M52 50l16 16M108 50L92 66M52 110l16-16M108 110L92 94" stroke="#000000"
-                              stroke-width="6" stroke-linecap="round" />
-                          </svg>
-                          <h5 class="fw-bold mb-3" data-i18n="service5Title">
-                            API Integrations
-                          </h5>
-                          <p class="mb-0" data-i18n="service5Text">
-                            Connect your systems and tools with secure and efficient
-                            integrations.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div class="col-12 col-md-6 col-lg-3">
-                        <div class="card service-card h-100 text-center p-4">
-                          <svg class="service-card-media" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"
-                            aria-hidden="true">
-                            <rect x="12" y="12" width="136" height="136" rx="28" fill="#eef0ff" />
-                            <circle cx="80" cy="80" r="30" fill="#000000" />
-                            <path d="M80 61v22l14 10" fill="none" stroke="#ffffff" stroke-width="8"
-                              stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M48 112c8 8 19 13 32 13s24-5 32-13" fill="none" stroke="#1400ff"
-                              stroke-width="7" stroke-linecap="round" />
-                          </svg>
-                          <h5 class="fw-bold mb-3" data-i18n="service6Title">
-                            Maintenance &amp; Support
-                          </h5>
-                          <p class="mb-0" data-i18n="service6Text">
-                            Keep your platforms stable, updated, and performing at
-                            their best.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div class="col-12 col-md-6 col-lg-3">
-                        <div class="card service-card h-100 text-center p-4">
-                          <svg class="service-card-media" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"
-                            aria-hidden="true">
-                            <rect x="12" y="12" width="136" height="136" rx="28" fill="#eef0ff" />
-                            <rect x="42" y="42" width="76" height="76" rx="14" fill="#1400ff" />
-                            <circle cx="80" cy="80" r="18" fill="#ffffff" />
-                            <path d="M80 69v22M69 80h22" stroke="#000000" stroke-width="7" stroke-linecap="round" />
-                            <circle cx="120" cy="40" r="14" fill="#000000" />
-                            <path d="M120 34v12M114 40h12" stroke="#ffffff" stroke-width="5"
-                              stroke-linecap="round" />
-                          </svg>
-                          <h5 class="fw-bold mb-3" data-i18n="service7Title">
-                            Technical Consulting
-                          </h5>
-                          <p class="mb-0" data-i18n="service7Text">
-                            Get strategic guidance to make better technology and
-                            architecture decisions.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div class="col-12 col-md-6 col-lg-3">
-                        <div class="card service-card h-100 text-center p-4">
-                          <svg class="service-card-media" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"
-                            aria-hidden="true">
-                            <rect x="12" y="12" width="136" height="136" rx="28" fill="#eef0ff" />
-                            <rect x="38" y="42" width="84" height="20" rx="8" fill="#1400ff" />
-                            <rect x="38" y="70" width="84" height="20" rx="8" fill="#000000" />
-                            <rect x="38" y="98" width="84" height="20" rx="8" fill="#7066ff" />
-                            <circle cx="56" cy="52" r="6" fill="#ffffff" />
-                            <circle cx="103" cy="80" r="6" fill="#ffffff" />
-                            <circle cx="83" cy="108" r="6" fill="#ffffff" />
-                            <path d="M62 52h35M38 80h59M38 108h39" stroke="#ffffff" stroke-width="5"
-                              stroke-linecap="round" />
-                          </svg>
-                          <h5 class="fw-bold mb-3" data-i18n="service8Title">
-                            Process Automation
-                          </h5>
-                          <p class="mb-0" data-i18n="service8Text">
-                            Automate repetitive tasks and improve efficiency across
-                            your business.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#servicesCarousel" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#servicesCarousel" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                </div>
-              </div>
-            </div>
+          <div class="services-orbit reveal-on-scroll" aria-hidden="true">
+            <div class="services-ring"></div>
+            <div class="services-ring services-ring-alt"></div>
+            <div class="services-chip services-chip-a">Web</div>
+            <div class="services-chip services-chip-b">Cloud</div>
+            <div class="services-chip services-chip-c">Automation</div>
           </div>
+        </div>
+
+        <div class="service-tile-grid">
+          <article class="service-tile reveal-on-scroll">
+            <div class="service-tile-icon"><i class="bi bi-arrow-repeat"></i></div>
+            <h5 data-i18n="service1Title">Digital Transformation</h5>
+            <p data-i18n="service1Text">Modernize your business processes and accelerate growth through digital solutions.</p>
+          </article>
+
+          <article class="service-tile reveal-on-scroll">
+            <div class="service-tile-icon"><i class="bi bi-arrow-left-right"></i></div>
+            <h5 data-i18n="service2Title">System Migration</h5>
+            <p data-i18n="service2Text">Move your operations to scalable, modern, and reliable platforms.</p>
+          </article>
+
+          <article class="service-tile reveal-on-scroll">
+            <div class="service-tile-icon"><i class="bi bi-code-slash"></i></div>
+            <h5 data-i18n="service3Title">Software Development</h5>
+            <p data-i18n="service3Text">Build custom web and mobile applications tailored to your goals.</p>
+          </article>
+
+          <article class="service-tile reveal-on-scroll">
+            <div class="service-tile-icon"><i class="bi bi-cloud-arrow-up"></i></div>
+            <h5 data-i18n="service4Title">Cloud Solutions</h5>
+            <p data-i18n="service4Text">Deploy, optimize, and scale your products using cloud infrastructure.</p>
+          </article>
+
+          <article class="service-tile reveal-on-scroll">
+            <div class="service-tile-icon"><i class="bi bi-diagram-3"></i></div>
+            <h5 data-i18n="service5Title">API Integrations</h5>
+            <p data-i18n="service5Text">Connect your systems and tools with secure and efficient integrations.</p>
+          </article>
+
+          <article class="service-tile reveal-on-scroll">
+            <div class="service-tile-icon"><i class="bi bi-wrench-adjustable"></i></div>
+            <h5 data-i18n="service6Title">Maintenance &amp; Support</h5>
+            <p data-i18n="service6Text">Keep your platforms stable, updated, and performing at their best.</p>
+          </article>
+
+          <article class="service-tile reveal-on-scroll">
+            <div class="service-tile-icon"><i class="bi bi-compass"></i></div>
+            <h5 data-i18n="service7Title">Technical Consulting</h5>
+            <p data-i18n="service7Text">Get strategic guidance to make better technology and architecture decisions.</p>
+          </article>
+
+          <article class="service-tile reveal-on-scroll">
+            <div class="service-tile-icon"><i class="bi bi-lightning-charge"></i></div>
+            <h5 data-i18n="service8Title">Process Automation</h5>
+            <p data-i18n="service8Text">Automate repetitive tasks and improve efficiency across your business.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <div class="section-divider"></div>
+    <section id="clients" class="snap-section section-clients" data-snap-section>
+      <div class="container clients-layout">
+        <div class="snap-copy reveal-on-scroll">
+          <span class="section-kicker">
+            <i class="bi bi-briefcase"></i>
+            <span data-i18n="clientsBadge">Selected work</span>
+          </span>
 
-    <section id="clients" class="content-section">
-      <div class="container">
-        <div class="section-shell reveal-on-scroll">
-          <div class="section-header">
-            <div>
-              <span class="section-badge">
-                <i class="bi bi-briefcase"></i>
-                <span data-i18n="clientsBadge">Selected work</span>
-              </span>
-              <h2 class="section-title" data-i18n="clientsTitle">Our Clients</h2>
-            </div>
+          <h2 class="snap-title" data-i18n="clientsTitle">Our Clients</h2>
 
-            <p class="section-copy" data-i18n="clientsIntro">
-              A couple of examples of how we turn operations into polished digital experiences with software teams
-              actually enjoy using.
-            </p>
-          </div>
+          <p class="snap-text" data-i18n="clientsIntro">
+            A couple of examples of how we turn operations into polished digital experiences with software teams
+            actually enjoy using.
+          </p>
 
-          <div class="clients-grid">
-            <div class="client-card p-4 p-md-5 reveal-on-scroll">
+          <div class="client-case-list">
+            <article class="client-case reveal-on-scroll">
               <img src="./coconos-bakery.png" alt="Coconos Bakery point of sale and payments software"
-                class="client-card-image" />
-
-              <div class="client-badge">
-                <i class="bi bi-bag-heart"></i>
+                class="client-thumb" />
+              <div>
+                <div class="client-tag"><i class="bi bi-bag-heart"></i></div>
+                <h5 data-i18n="client1Title">Coconos Bakery</h5>
+                <p data-i18n="client1Text">
+                  We helped Coconos Bakery digitalize its sales process, improving order management, operational
+                  visibility, and day-to-day efficiency.
+                </p>
               </div>
+            </article>
 
-              <h5 data-i18n="client1Title">Coconos Bakery</h5>
-              <p data-i18n="client1Text">
-                We helped Coconos Bakery digitalize its sales process, improving order
-                management, operational visibility, and day-to-day efficiency.
-              </p>
-            </div>
-
-            <div class="client-card p-4 p-md-5 reveal-on-scroll">
+            <article class="client-case reveal-on-scroll">
               <img src="./libros-magistrales.png" alt="Libros Magistrales ERP dashboard for sales and administration"
-                class="client-card-image" />
-
-              <div class="client-badge">
-                <i class="bi bi-journal-bookmark"></i>
+                class="client-thumb" />
+              <div>
+                <div class="client-tag"><i class="bi bi-journal-bookmark"></i></div>
+                <h5 data-i18n="client2Title">Libros Magistrales</h5>
+                <p data-i18n="client2Text">
+                  We helped Libros Magistrales, a company focused on selling books to schools, by building an ERP to
+                  manage internal processes, administration, and operational workflows.
+                </p>
               </div>
-
-              <h5 data-i18n="client2Title">Libros Magistrales</h5>
-              <p data-i18n="client2Text">
-                We helped Libros Magistrales, a company focused on selling books to
-                schools, by building an ERP to manage internal processes,
-                administration, and operational workflows.
-              </p>
-            </div>
+            </article>
           </div>
+        </div>
+
+        <div class="snap-visual clients-visual reveal-on-scroll" aria-hidden="true">
+          <svg class="clients-handshake" viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="clientGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#67dcff" />
+                <stop offset="100%" stop-color="#7f72ff" />
+              </linearGradient>
+              <linearGradient id="clientCard" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="rgba(255,255,255,0.16)" />
+                <stop offset="100%" stop-color="rgba(255,255,255,0.02)" />
+              </linearGradient>
+            </defs>
+
+            <circle cx="278" cy="212" r="154" fill="url(#clientGlow)" opacity="0.12" />
+            <rect x="36" y="42" width="488" height="336" rx="42" fill="rgba(8,14,42,0.48)" stroke="rgba(255,255,255,0.08)" />
+
+            <g class="person-left">
+              <circle cx="182" cy="138" r="36" fill="#8ee8ff" opacity="0.9" />
+              <path d="M132 286c10-58 36-98 76-98s66 40 76 98" fill="#14214f" opacity="0.92" />
+              <path d="M228 204c18 16 34 33 52 56" fill="none" stroke="#8ee8ff" stroke-width="20" stroke-linecap="round" />
+              <path d="M168 208c-22 18-39 38-57 65" fill="none" stroke="#cfd7ff" stroke-width="18" stroke-linecap="round" opacity="0.72" />
+            </g>
+
+            <g class="person-right">
+              <circle cx="378" cy="138" r="36" fill="#7f72ff" opacity="0.94" />
+              <path d="M328 286c10-58 36-98 76-98s66 40 76 98" fill="#0f173a" opacity="0.94" />
+              <path d="M332 204c-18 16-34 33-52 56" fill="none" stroke="#7f72ff" stroke-width="20" stroke-linecap="round" />
+              <path d="M392 208c22 18 39 38 57 65" fill="none" stroke="#cfd7ff" stroke-width="18" stroke-linecap="round" opacity="0.72" />
+            </g>
+
+            <g class="handshake-spark">
+              <circle cx="280" cy="260" r="18" fill="#ffffff" opacity="0.18" />
+              <circle cx="280" cy="260" r="8" fill="#ffffff" />
+              <path d="M280 226v-22M280 294v22M246 260h-22M314 260h22M257 237l-16-16M303 237l16-16M257 283l-16 16M303 283l16 16"
+                stroke="#8ee8ff" stroke-width="8" stroke-linecap="round" />
+            </g>
+          </svg>
         </div>
       </div>
     </section>
 
-    <div class="section-divider"></div>
+    <section id="contact" class="snap-section section-contact" data-snap-section>
+      <div class="container contact-layout-full">
+        <div class="snap-copy reveal-on-scroll">
+          <span class="section-kicker">
+            <i class="bi bi-send-check"></i>
+            <span data-i18n="contactBadge">Let's build together</span>
+          </span>
 
-    <section id="contact" class="content-section">
-      <div class="container">
-        <div class="section-shell reveal-on-scroll">
-          <div class="contact-layout">
-            <div>
-              <span class="section-badge">
-                <i class="bi bi-send-check"></i>
-                <span data-i18n="contactBadge">Let's build together</span>
-              </span>
-              <h2 class="section-title" data-i18n="contactTitle">Contact Us</h2>
-              <p class="section-copy mt-4" data-i18n="contactText">
-                Let’s talk about your project and how we can help you grow in the
-                digital world.
-              </p>
+          <h2 class="snap-title" data-i18n="contactTitle">Contact Us</h2>
+
+          <p class="snap-text" data-i18n="contactText">
+            Let’s talk about your project and how we can help you grow in the
+            digital world.
+          </p>
+        </div>
+
+        <div class="contact-column">
+          <div class="contact-panel reveal-on-scroll">
+            <div class="contact-pill-inline">
+              <i class="bi bi-lightning-charge-fill"></i>
+              <span data-i18n="contactPill">Replies within 24 hours</span>
             </div>
 
-            <div class="contact-card p-4 p-md-5 reveal-on-scroll">
-              <div class="contact-pill">
-                <i class="bi bi-lightning-charge-fill"></i>
-                <span data-i18n="contactPill">Replies within 24 hours</span>
-              </div>
+            <div class="d-grid gap-3">
+              <a href="mailto:contacto@techmty.com.mx"
+                class="contact-link">
+                <i class="bi bi-envelope-fill"></i>
+                <span data-i18n="contactEmail">Send us an email</span>
+              </a>
 
-              <div class="d-flex flex-column gap-3">
-                <a href="mailto:contacto@techmty.com.mx"
-                  class="btn btn-glass-action d-inline-flex align-items-center justify-content-center gap-2">
-                  <i class="bi bi-envelope-fill"></i>
-                  <span data-i18n="contactEmail">Send us an email</span>
-                </a>
+              <a href="https://wa.me/528117985690" target="_blank"
+                class="contact-link">
+                <i class="bi bi-whatsapp"></i>
+                <span data-i18n="contactWhatsapp">Chat on WhatsApp</span>
+              </a>
+            </div>
+          </div>
 
-                <a href="https://wa.me/528117985690" target="_blank"
-                  class="btn btn-glass-action d-inline-flex align-items-center justify-content-center gap-2">
-                  <i class="bi bi-whatsapp"></i>
-                  <span data-i18n="contactWhatsapp">Chat on WhatsApp</span>
-                </a>
-              </div>
+          <div class="contact-visual reveal-on-scroll" aria-hidden="true">
+            <div class="contact-radar">
+              <div class="contact-radar-sweep"></div>
+              <div class="contact-radar-dot contact-radar-dot-a"></div>
+              <div class="contact-radar-dot contact-radar-dot-b"></div>
+              <div class="contact-radar-dot contact-radar-dot-c"></div>
             </div>
           </div>
         </div>
@@ -2535,25 +3501,6 @@
     }
 
     /**
-     * Toggles the navbar background once the page is scrolled past the hero edge.
-     * @returns {void}
-     */
-    function setupNavbarScrollState() {
-      const navbar = document.querySelector(".navbar");
-
-      if (!navbar) {
-        return;
-      }
-
-      const syncNavbarScrollState = () => {
-        navbar.classList.toggle("navbar-scrolled", window.scrollY > 24);
-      };
-
-      syncNavbarScrollState();
-      window.addEventListener("scroll", syncNavbarScrollState, { passive: true });
-    }
-
-    /**
      * Reveals sections and cards progressively as they enter the viewport.
      * @returns {void}
      */
@@ -2624,10 +3571,91 @@
       resetHeroMotion();
     }
 
+    /**
+     * Moves the viewport one full section at a time on desktop wheel scroll.
+     * Keeps mobile and reduced-motion behavior fully natural.
+     * @returns {void}
+     */
+    function setupSectionScrollAssist() {
+      const sections = [...document.querySelectorAll(".hero, [data-snap-section]")];
+      const desktopQuery = window.matchMedia("(min-width: 992px)");
+      const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      let scrollLockTimer = 0;
+      let isNavigating = false;
+
+      if (sections.length < 2) {
+        return;
+      }
+
+      const isEnabled = () => desktopQuery.matches && !reducedMotionQuery.matches;
+
+      const getCurrentSectionIndex = () => {
+        const viewportCenter = window.innerHeight / 2;
+        let closestIndex = 0;
+        let closestDistance = Number.POSITIVE_INFINITY;
+
+        sections.forEach((section, index) => {
+          const rect = section.getBoundingClientRect();
+          const distance = Math.abs(rect.top + rect.height / 2 - viewportCenter);
+
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = index;
+          }
+        });
+
+        return closestIndex;
+      };
+
+      const releaseScrollLock = () => {
+        isNavigating = false;
+        window.clearTimeout(scrollLockTimer);
+      };
+
+      window.addEventListener("wheel", (event) => {
+        if (!isEnabled() || event.defaultPrevented || event.ctrlKey || event.metaKey || event.shiftKey) {
+          return;
+        }
+
+        if (Math.abs(event.deltaY) < 18 || Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
+          return;
+        }
+
+        if (isNavigating) {
+          event.preventDefault();
+          return;
+        }
+
+        const direction = event.deltaY > 0 ? 1 : -1;
+        const currentIndex = getCurrentSectionIndex();
+        const nextIndex = Math.min(Math.max(currentIndex + direction, 0), sections.length - 1);
+
+        if (nextIndex === currentIndex) {
+          return;
+        }
+
+        event.preventDefault();
+        isNavigating = true;
+
+        sections[nextIndex].scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+        scrollLockTimer = window.setTimeout(() => {
+          isNavigating = false;
+        }, 900);
+      }, { passive: false });
+
+      window.addEventListener("resize", releaseScrollLock);
+      desktopQuery.addEventListener?.("change", releaseScrollLock);
+      reducedMotionQuery.addEventListener?.("change", releaseScrollLock);
+    }
+
     setupMobileNavbarState();
-    setupNavbarScrollState();
     setupRevealOnScroll();
     setupHeroStageMotion();
+    setupSectionScrollAssist();
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
