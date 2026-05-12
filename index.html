@@ -613,9 +613,7 @@
       height: 390px;
       transform-style: preserve-3d;
       transform:
-        translate(-50%, -50%)
-        rotateX(calc(12deg + var(--hero-pointer-y)))
-        rotateY(calc(-24deg + var(--hero-pointer-x)));
+        translate(-50%, -50%) rotateX(calc(12deg + var(--hero-pointer-y))) rotateY(calc(-24deg + var(--hero-pointer-x)));
       transition: transform 220ms ease-out;
       will-change: transform;
     }
@@ -935,6 +933,7 @@
     }
 
     @keyframes floatCard {
+
       0%,
       100% {
         transform: translateY(0);
@@ -946,6 +945,7 @@
     }
 
     @keyframes laptopFloat {
+
       0%,
       100% {
         transform: translateY(0);
@@ -957,6 +957,7 @@
     }
 
     @keyframes laptopSway {
+
       0%,
       100% {
         transform: rotateZ(0deg);
@@ -1017,6 +1018,7 @@
     }
 
     @keyframes visualFloat {
+
       0%,
       100% {
         transform: translate3d(0, 0, 0);
@@ -1028,6 +1030,7 @@
     }
 
     @keyframes pulseGlow {
+
       0%,
       100% {
         opacity: 0.45;
@@ -1121,7 +1124,8 @@
           transparent 74%);
     }
 
-    .section-clients::before {
+    .section-clients::before,
+    .section-entrepreneurs::before {
       width: 320px;
       height: 320px;
       right: 6%;
@@ -1129,6 +1133,16 @@
       background: radial-gradient(circle at center,
           rgba(103, 220, 255, 0.18),
           transparent 74%);
+    }
+
+    .section-reviews::before {
+      width: 340px;
+      height: 340px;
+      left: -8%;
+      top: 18%;
+      background: radial-gradient(circle at center,
+          rgba(127, 114, 255, 0.2),
+          transparent 76%);
     }
 
     .section-contact::before {
@@ -1598,11 +1612,206 @@
       line-height: 1.6;
     }
 
-    .clients-layout {
+    .clients-layout,
+    .entrepreneur-layout,
+    .reviews-layout {
       display: grid;
       grid-template-columns: minmax(0, 0.88fr) minmax(340px, 0.92fr);
       gap: clamp(2rem, 4vw, 3rem);
       align-items: center;
+    }
+
+    .entrepreneur-layout {
+      grid-template-columns: minmax(0, 0.72fr) minmax(420px, 1fr);
+    }
+
+    .entrepreneur-proof-list {
+      display: grid;
+      gap: 0.8rem;
+      margin: 1.8rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .entrepreneur-proof-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.72rem;
+      color: rgba(223, 230, 255, 0.78);
+      line-height: 1.5;
+    }
+
+    .entrepreneur-proof-list i {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.2rem;
+      height: 2.2rem;
+      flex: 0 0 2.2rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #8ee8ff;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .entrepreneur-offer-list {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .entrepreneur-offer {
+      position: relative;
+      overflow: hidden;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      padding: 1.15rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1.4rem;
+      background: linear-gradient(180deg,
+          rgba(10, 16, 38, 0.9),
+          rgba(6, 10, 24, 0.96));
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 22px 42px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: transform 0.28s ease, border-color 0.28s ease,
+        box-shadow 0.28s ease;
+    }
+
+    .entrepreneur-offer::before {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      right: -64px;
+      top: -72px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center,
+          rgba(103, 220, 255, 0.16),
+          transparent 72%);
+      pointer-events: none;
+    }
+
+    .entrepreneur-offer:hover {
+      transform: translateY(-6px);
+      border-color: rgba(103, 220, 255, 0.2);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 28px 50px rgba(0, 0, 0, 0.22);
+    }
+
+    .entrepreneur-offer>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .entrepreneur-offer-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .entrepreneur-offer-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 3.1rem;
+      height: 3.1rem;
+      flex: 0 0 3.1rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.08);
+      color: #8ee8ff;
+      font-size: 1.1rem;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .entrepreneur-offer h5 {
+      margin: 0 0 0.75rem;
+      color: #ffffff;
+      font-family: "Satoshi", "Inter", sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .entrepreneur-offer p {
+      margin: 0;
+      color: rgba(223, 230, 255, 0.72);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .entrepreneur-price {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      min-height: 0;
+      padding: 0.5rem 0.7rem;
+      border: 1px solid rgba(103, 220, 255, 0.22);
+      border-radius: 999px;
+      background: rgba(103, 220, 255, 0.1);
+      color: #ffffff;
+      font-family: "Satoshi", "Inter", sans-serif;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .entrepreneur-price small {
+      color: rgba(223, 230, 255, 0.68);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+    }
+
+    .entrepreneur-price strong {
+      color: #ffffff;
+      font-size: 1.02rem;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .entrepreneur-price span {
+      color: rgba(223, 230, 255, 0.68);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+    }
+
+    .entrepreneur-footer {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-top: auto;
+      padding-top: 1.2rem;
+      color: rgba(241, 245, 255, 0.88);
+      font-family: "Satoshi", "Inter", sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .entrepreneur-footer i {
+      color: #8ee8ff;
+      font-size: 1rem;
+    }
+
+    .entrepreneur-footer span {
+      color: #8ee8ff;
+    }
+
+    .entrepreneur-footer .entrepreneur-footer-main {
+      color: rgba(241, 245, 255, 0.88);
+    }
+
+    .reviews-layout {
+      grid-template-columns: minmax(0, 0.68fr) minmax(360px, 1fr);
     }
 
     .client-case-list {
@@ -1633,6 +1842,45 @@
       border-radius: 1rem;
       border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: 0 16px 28px rgba(0, 0, 0, 0.18);
+    }
+
+    .client-thumb-fallback {
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 28% 24%, rgba(103, 220, 255, 0.22), transparent 34%),
+        linear-gradient(145deg, rgba(10, 20, 54, 0.95), rgba(5, 9, 28, 0.98));
+      color: #8ee8ff;
+      font-family: "Satoshi", "Inter", sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .client-thumb-fallback i {
+      font-size: 2.4rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .client-thumb-fallback span {
+      display: block;
+      color: #ffffff;
+      font-size: 0.95rem;
+    }
+
+    .review-stars {
+      display: flex;
+      align-items: center;
+      gap: 0.22rem;
+      margin-bottom: 0.55rem;
+      color: #ffd166;
+      font-size: 0.95rem;
+    }
+
+    .review-stars span {
+      margin-left: 0.35rem;
+      color: rgba(223, 230, 255, 0.68);
+      font-size: 0.82rem;
+      font-weight: 700;
     }
 
     .client-tag {
@@ -2318,6 +2566,7 @@
     }
 
     @keyframes serviceIconFloat {
+
       0%,
       100% {
         transform: translateY(0);
@@ -2329,6 +2578,7 @@
     }
 
     @keyframes serviceGlowPulse {
+
       0%,
       100% {
         opacity: 0.45;
@@ -2499,6 +2749,10 @@
       .hero-floating-card-bottom {
         bottom: 0;
       }
+
+      .entrepreneur-offer-header {
+        flex-direction: column;
+      }
     }
 
     @media (min-width: 992px) {
@@ -2522,6 +2776,8 @@
 
       .snap-shell,
       .clients-layout,
+      .entrepreneur-layout,
+      .reviews-layout,
       .contact-layout-full {
         min-height: calc(100svh - clamp(9.4rem, 12vh, 10.2rem));
       }
@@ -2615,8 +2871,11 @@
     }
 
     @media (max-width: 1199.98px) {
+
       .snap-shell,
       .clients-layout,
+      .entrepreneur-layout,
+      .reviews-layout,
       .contact-layout-full {
         grid-template-columns: 1fr;
       }
@@ -2661,6 +2920,8 @@
 
       .snap-shell,
       .clients-layout,
+      .entrepreneur-layout,
+      .reviews-layout,
       .contact-layout-full {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -2707,6 +2968,17 @@
       }
 
       .client-case {
+        grid-template-columns: 1fr;
+      }
+
+      .entrepreneur-proof-list {
+        width: min(100%, 430px);
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+      }
+
+      .entrepreneur-offer-list {
         grid-template-columns: 1fr;
       }
 
@@ -3086,7 +3358,8 @@
           <article class="service-tile reveal-on-scroll">
             <div class="service-tile-icon"><i class="bi bi-arrow-repeat"></i></div>
             <h5 data-i18n="service1Title">Digital Transformation</h5>
-            <p data-i18n="service1Text">Modernize your business processes and accelerate growth through digital solutions.</p>
+            <p data-i18n="service1Text">Modernize your business processes and accelerate growth through digital
+              solutions.</p>
           </article>
 
           <article class="service-tile reveal-on-scroll">
@@ -3134,87 +3407,205 @@
       </div>
     </section>
 
-    <section id="clients" class="snap-section section-clients" data-snap-section>
-      <div class="container clients-layout">
+    <section id="entrepreneurs" class="snap-section section-clients section-entrepreneurs" data-snap-section>
+      <div class="container entrepreneur-layout">
         <div class="snap-copy reveal-on-scroll">
           <span class="section-kicker">
-            <i class="bi bi-briefcase"></i>
-            <span data-i18n="clientsBadge">Selected work</span>
+            <i class="bi bi-rocket-takeoff"></i>
+            <span data-i18n="entrepreneurBadge">For entrepreneurs</span>
           </span>
 
-          <h2 class="snap-title" data-i18n="clientsTitle">Our Clients</h2>
+          <h2 class="snap-title" data-i18n="entrepreneurTitle">Services for Entrepreneurs</h2>
 
-          <p class="snap-text" data-i18n="clientsIntro">
-            A couple of examples of how we turn operations into polished digital experiences with software teams
-            actually enjoy using.
+          <p class="snap-text" data-i18n="entrepreneurIntro">
+            Practical digital packages for small businesses that need to start selling, organize operations, or launch a
+            sharper online presence.
           </p>
 
-          <div class="client-case-list">
-            <article class="client-case reveal-on-scroll">
-              <img src="./coconos-bakery.png" alt="Coconos Bakery point of sale and payments software"
-                class="client-thumb" />
-              <div>
-                <div class="client-tag"><i class="bi bi-bag-heart"></i></div>
-                <h5 data-i18n="client1Title">Coconos Bakery</h5>
-                <p data-i18n="client1Text">
-                  We helped Coconos Bakery digitalize its sales process, improving order management, operational
-                  visibility, and day-to-day efficiency.
-                </p>
-              </div>
-            </article>
-
-            <article class="client-case reveal-on-scroll">
-              <img src="./libros-magistrales.png" alt="Libros Magistrales ERP dashboard for sales and administration"
-                class="client-thumb" />
-              <div>
-                <div class="client-tag"><i class="bi bi-journal-bookmark"></i></div>
-                <h5 data-i18n="client2Title">Libros Magistrales</h5>
-                <p data-i18n="client2Text">
-                  We helped Libros Magistrales, a company focused on selling books to schools, by building an ERP to
-                  manage internal processes, administration, and operational workflows.
-                </p>
-              </div>
-            </article>
-          </div>
+          <ul class="entrepreneur-proof-list">
+            <li>
+              <i class="bi bi-check2-circle"></i>
+              <span data-i18n="entrepreneurProof1">Clear scopes, transparent starting prices, and room to grow.</span>
+            </li>
+            <li>
+              <i class="bi bi-lightning-charge"></i>
+              <span data-i18n="entrepreneurProof2">Built to launch fast without losing quality or long-term
+                control.</span>
+            </li>
+          </ul>
         </div>
 
-        <div class="snap-visual clients-visual reveal-on-scroll" aria-hidden="true">
-          <svg class="clients-handshake" viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="clientGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#67dcff" />
-                <stop offset="100%" stop-color="#7f72ff" />
-              </linearGradient>
-              <linearGradient id="clientCard" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="rgba(255,255,255,0.16)" />
-                <stop offset="100%" stop-color="rgba(255,255,255,0.02)" />
-              </linearGradient>
-            </defs>
+        <div class="entrepreneur-offer-list">
+          <article class="entrepreneur-offer reveal-on-scroll">
+            <div class="entrepreneur-offer-header">
+              <div class="entrepreneur-offer-icon"><i class="bi bi-cash-coin"></i></div>
+              <div class="entrepreneur-price">
+                <small data-i18n="priceFrom">From</small>
+                <strong>$2,000</strong>
+                <span>MXN</span>
+              </div>
+            </div>
+            <h5 data-i18n="entrepreneurOffer1Title">Point of Sale</h5>
+            <p data-i18n="entrepreneurOffer1Text">Manage sales, inventory, and customers easily and efficiently.</p>
+            <div class="entrepreneur-footer">
+              <i class="bi bi-arrow-up-right"></i>
+              <div>
+                <span class="entrepreneur-footer-main" data-i18n="entrepreneurFooterLead">Ideas + technology =</span>
+                <span data-i18n="entrepreneurFooterGrowth">businesses that grow</span>
+              </div>
+            </div>
+          </article>
 
-            <circle cx="278" cy="212" r="154" fill="url(#clientGlow)" opacity="0.12" />
-            <rect x="36" y="42" width="488" height="336" rx="42" fill="rgba(8,14,42,0.48)" stroke="rgba(255,255,255,0.08)" />
+          <article class="entrepreneur-offer reveal-on-scroll">
+            <div class="entrepreneur-offer-header">
+              <div class="entrepreneur-offer-icon"><i class="bi bi-cart4"></i></div>
+              <div class="entrepreneur-price">
+                <small data-i18n="priceFrom">From</small>
+                <strong>$15,000</strong>
+                <span>MXN</span>
+              </div>
+            </div>
+            <h5 data-i18n="entrepreneurOffer2Title">Online Store</h5>
+            <p data-i18n="entrepreneurOffer2Text">Sell your products 24/7 with a modern and secure online store.</p>
+            <div class="entrepreneur-footer">
+              <i class="bi bi-arrow-up-right"></i>
+              <div>
+                <span class="entrepreneur-footer-main" data-i18n="entrepreneurFooterLead">Ideas + technology =</span>
+                <span data-i18n="entrepreneurFooterGrowth">businesses that grow</span>
+              </div>
+            </div>
+          </article>
 
-            <g class="person-left">
-              <circle cx="182" cy="138" r="36" fill="#8ee8ff" opacity="0.9" />
-              <path d="M132 286c10-58 36-98 76-98s66 40 76 98" fill="#14214f" opacity="0.92" />
-              <path d="M228 204c18 16 34 33 52 56" fill="none" stroke="#8ee8ff" stroke-width="20" stroke-linecap="round" />
-              <path d="M168 208c-22 18-39 38-57 65" fill="none" stroke="#cfd7ff" stroke-width="18" stroke-linecap="round" opacity="0.72" />
-            </g>
+          <article class="entrepreneur-offer reveal-on-scroll">
+            <div class="entrepreneur-offer-header">
+              <div class="entrepreneur-offer-icon"><i class="bi bi-graph-up-arrow"></i></div>
+              <div class="entrepreneur-price">
+                <small data-i18n="priceFrom">From</small>
+                <strong>$5,000</strong>
+                <span>MXN</span>
+              </div>
+            </div>
+            <h5 data-i18n="entrepreneurOffer3Title">Marketing Website</h5>
+            <p data-i18n="entrepreneurOffer3Text">Websites designed to attract, persuade, and convert customers.</p>
+            <div class="entrepreneur-footer">
+              <i class="bi bi-arrow-up-right"></i>
+              <div>
+                <span class="entrepreneur-footer-main" data-i18n="entrepreneurFooterLead">Ideas + technology =</span>
+                <span data-i18n="entrepreneurFooterGrowth">businesses that grow</span>
+              </div>
+            </div>
+          </article>
 
-            <g class="person-right">
-              <circle cx="378" cy="138" r="36" fill="#7f72ff" opacity="0.94" />
-              <path d="M328 286c10-58 36-98 76-98s66 40 76 98" fill="#0f173a" opacity="0.94" />
-              <path d="M332 204c-18 16-34 33-52 56" fill="none" stroke="#7f72ff" stroke-width="20" stroke-linecap="round" />
-              <path d="M392 208c22 18 39 38 57 65" fill="none" stroke="#cfd7ff" stroke-width="18" stroke-linecap="round" opacity="0.72" />
-            </g>
+          <article class="entrepreneur-offer reveal-on-scroll">
+            <div class="entrepreneur-offer-header">
+              <div class="entrepreneur-offer-icon"><i class="bi bi-code-slash"></i></div>
+              <div class="entrepreneur-price">
+                <strong data-i18n="priceQuote">Quote</strong>
+              </div>
+            </div>
+            <h5 data-i18n="entrepreneurOffer4Title">Custom Software</h5>
+            <p data-i18n="entrepreneurOffer4Text">We build tailored solutions that adapt to your business.</p>
+            <div class="entrepreneur-footer">
+              <i class="bi bi-arrow-up-right"></i>
+              <div>
+                <span class="entrepreneur-footer-main" data-i18n="entrepreneurFooterLead">Ideas + technology =</span>
+                <span data-i18n="entrepreneurFooterGrowth">businesses that grow</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-            <g class="handshake-spark">
-              <circle cx="280" cy="260" r="18" fill="#ffffff" opacity="0.18" />
-              <circle cx="280" cy="260" r="8" fill="#ffffff" />
-              <path d="M280 226v-22M280 294v22M246 260h-22M314 260h22M257 237l-16-16M303 237l16-16M257 283l-16 16M303 283l16 16"
-                stroke="#8ee8ff" stroke-width="8" stroke-linecap="round" />
-            </g>
-          </svg>
+    <section id="reviews" class="snap-section section-reviews" data-snap-section>
+      <div class="container reviews-layout">
+        <div class="snap-copy reveal-on-scroll">
+          <span class="section-kicker">
+            <i class="bi bi-chat-heart"></i>
+            <span data-i18n="reviewsBadge">Reviews</span>
+          </span>
+
+          <h2 class="snap-title" data-i18n="reviewsTitle">Trusted by growing businesses</h2>
+
+          <p class="snap-text" data-i18n="reviewsIntro">
+            Real projects for entrepreneurs and small teams that needed cleaner operations, better control, and tools
+            they could use every day.
+          </p>
+        </div>
+
+        <div class="client-case-list">
+          <article class="client-case reveal-on-scroll">
+            <img src="./coconos-bakery.png" alt="Coconos Bakery point of sale and payments software"
+              class="client-thumb" />
+            <div>
+              <h5 data-i18n="review1Title">
+                <div class="client-tag"><i class="bi bi-bag-heart"></i></div>
+                <span>
+                  Coconos Bakery
+                </span>
+              </h5>
+              <div class="review-stars" aria-label="5 out of 5 stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <span data-i18n="reviewRating">5.0 / 5 stars</span>
+              </div>
+              <p data-i18n="review1Text">
+                TechMty helped us organize sales and daily operations with a system that is simple, fast, and reliable.
+              </p>
+            </div>
+          </article>
+
+          <article class="client-case reveal-on-scroll">
+            <img src="./libros-magistrales.png" alt="Libros Magistrales ERP dashboard for sales and administration"
+              class="client-thumb" />
+            <div>
+              <h5 data-i18n="review2Title">
+                <div class="client-tag"><i class="bi bi-journal-bookmark"></i></div>
+                <span>
+                  Libros Magistrales
+                </span>
+              </h5>
+              <div class="review-stars" aria-label="5 out of 5 stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <span data-i18n="reviewRating">5.0 / 5 stars</span>
+              </div>
+              <p data-i18n="review2Text">
+                Their ERP gave us better control of administration, internal processes, and the full school book sales
+                workflow.
+              </p>
+            </div>
+          </article>
+
+          <article class="client-case reveal-on-scroll">
+            <img src="./aromantic.png" alt="Aromantic" class="client-thumb" />
+            <div>
+              <h5 data-i18n="review3Title">
+                <div class="client-tag"><i class="bi bi-flower1"></i></div>
+                <span>
+                  Aromantic
+                </span>
+              </h5>
+              <div class="review-stars" aria-label="5 out of 5 stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <span data-i18n="reviewRating">5.0 / 5 stars</span>
+              </div>
+              <p data-i18n="review3Text">
+                TechMty built our online sales website with a polished experience that helps customers discover and buy
+                with confidence.
+              </p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -3243,14 +3634,12 @@
             </div>
 
             <div class="d-grid gap-3">
-              <a href="mailto:contacto@techmty.com.mx"
-                class="contact-link">
+              <a href="mailto:contacto@techmty.com.mx" class="contact-link">
                 <i class="bi bi-envelope-fill"></i>
                 <span data-i18n="contactEmail">Send us an email</span>
               </a>
 
-              <a href="https://wa.me/528117985690" target="_blank"
-                class="contact-link">
+              <a href="https://wa.me/528117985690" target="_blank" class="contact-link">
                 <i class="bi bi-whatsapp"></i>
                 <span data-i18n="contactWhatsapp">Chat on WhatsApp</span>
               </a>
@@ -3342,9 +3731,34 @@
         service8Title: "Process Automation",
         service8Text:
           "Automate repetitive tasks and improve efficiency across your business.",
-        clientsBadge: "Selected work",
-        clientsIntro:
-          "A couple of examples of how we turn operations into polished digital experiences with software teams actually enjoy using.",
+        entrepreneurBadge: "For entrepreneurs",
+        entrepreneurTitle: "Services for Entrepreneurs",
+        entrepreneurIntro:
+          "Practical digital packages for small businesses that need to start selling, organize operations, or launch a sharper online presence.",
+        entrepreneurProof1:
+          "Clear scopes, transparent starting prices, and room to grow.",
+        entrepreneurProof2:
+          "Built to launch fast without losing quality or long-term control.",
+        entrepreneurOffer1Title: "Point of Sale",
+        entrepreneurOffer1Text:
+          "Manage sales, inventory, and customers easily and efficiently.",
+        entrepreneurOffer2Title: "Online Store",
+        entrepreneurOffer2Text:
+          "Sell your products 24/7 with a modern and secure online store.",
+        entrepreneurOffer3Title: "Marketing Website",
+        entrepreneurOffer3Text:
+          "Websites designed to attract, persuade, and convert customers.",
+        entrepreneurOffer4Title: "Custom Software",
+        entrepreneurOffer4Text:
+          "We build tailored solutions that adapt to your business.",
+        priceFrom: "From",
+        priceQuote: "Quote",
+        entrepreneurFooterLead: "Ideas + technology =",
+        entrepreneurFooterGrowth: "businesses that grow",
+        reviewsBadge: "Reviews",
+        reviewsTitle: "Trusted by growing businesses",
+        reviewsIntro:
+          "Real projects for entrepreneurs and small teams that needed cleaner operations, better control, and tools they could use every day.",
         contactTitle: "Contact Us",
         contactBadge: "Let's build together",
         contactText:
@@ -3352,13 +3766,16 @@
         contactPill: "Replies within 24 hours",
         contactEmail: "Send us an email",
         contactWhatsapp: "Chat on WhatsApp",
-        clientsTitle: "Our Clients",
-        client1Title: "Coconos Bakery",
-        client1Text:
-          "We helped Coconos Bakery digitalize its sales process, improving order management, operational visibility, and day-to-day efficiency.",
-        client2Title: "Libros Magistrales",
-        client2Text:
-          "We helped Libros Magistrales, a company focused on selling books to schools, by building an ERP to manage internal processes, administration, and operational workflows.",
+        reviewRating: "5.0 / 5 stars",
+        review1Title: "Coconos Bakery",
+        review1Text:
+          "TechMty helped us organize sales and daily operations with a system that is simple, fast, and reliable.",
+        review2Title: "Libros Magistrales",
+        review2Text:
+          "Their ERP gave us better control of administration, internal processes, and the full school book sales workflow.",
+        review3Title: "Aromantic",
+        review3Text:
+          "TechMty built our online sales website at aromantic.com.mx with a polished experience that helps customers discover and buy with confidence.",
       },
       es: {
         navAbout: "Nosotros",
@@ -3422,9 +3839,34 @@
         service8Title: "Automatización de Procesos",
         service8Text:
           "Automatiza tareas repetitivas y mejora la eficiencia de tu negocio.",
-        clientsBadge: "Proyectos seleccionados",
-        clientsIntro:
-          "Un par de ejemplos de cómo convertimos operaciones reales en experiencias digitales pulidas que los equipos sí disfrutan usar.",
+        entrepreneurBadge: "Para emprendedores",
+        entrepreneurTitle: "Servicios para Emprendedores",
+        entrepreneurIntro:
+          "Paquetes digitales practicos para negocios que necesitan empezar a vender, ordenar su operacion o lanzar una presencia online mas clara.",
+        entrepreneurProof1:
+          "Alcances claros, precios iniciales transparentes y espacio para crecer.",
+        entrepreneurProof2:
+          "Construidos para lanzar rapido sin perder calidad ni control a largo plazo.",
+        entrepreneurOffer1Title: "Punto de Venta",
+        entrepreneurOffer1Text:
+          "Administra tus ventas, inventario y clientes de forma facil y eficiente.",
+        entrepreneurOffer2Title: "Tienda en Linea",
+        entrepreneurOffer2Text:
+          "Vende tus productos 24/7 con una tienda en linea moderna y segura.",
+        entrepreneurOffer3Title: "Marketing Website",
+        entrepreneurOffer3Text:
+          "Sitios web disenados para atraer, convencer y convertir clientes.",
+        entrepreneurOffer4Title: "Software a tu Medida",
+        entrepreneurOffer4Text:
+          "Desarrollamos soluciones personalizadas que se adaptan a tu negocio.",
+        priceFrom: "Desde",
+        priceQuote: "A cotizar",
+        entrepreneurFooterLead: "Ideas + tecnologia =",
+        entrepreneurFooterGrowth: "negocios que crecen",
+        reviewsBadge: "Reviews",
+        reviewsTitle: "Proyectos que ya estan creciendo",
+        reviewsIntro:
+          "Proyectos reales para emprendedores y equipos pequenos que necesitaban operaciones mas claras, mejor control y herramientas para usar todos los dias.",
         contactTitle: "Contacto",
         contactBadge: "Construyamos juntos",
         contactText:
@@ -3432,13 +3874,16 @@
         contactPill: "Respondemos en menos de 24 horas",
         contactEmail: "Envíanos un correo",
         contactWhatsapp: "Chatea por WhatsApp",
-        clientsTitle: "Nuestros Clientes",
-        client1Title: "Coconos Bakery",
-        client1Text:
-          "Ayudamos a Coconos Bakery a digitalizar su proceso de ventas, mejorando la gestión de pedidos, la visibilidad operativa y la eficiencia del día a día.",
-        client2Title: "Libros Magistrales",
-        client2Text:
-          "Ayudamos a Libros Magistrales, una empresa enfocada en la venta de libros a escuelas, mediante el desarrollo de un ERP para administrar sus procesos internos, su operación y su gestión administrativa.",
+        reviewRating: "5.0 / 5 estrellas",
+        review1Title: "Coconos Bakery",
+        review1Text:
+          "TechMty nos ayudó a ordenar las ventas y la operación diaria con un sistema fácil, rápido y confiable.",
+        review2Title: "Libros Magistrales",
+        review2Text:
+          "Su ERP nos dio mucho mejor control de la administración, los procesos internos y la venta de libros a escuelas.",
+        review3Title: "Aromantic",
+        review3Text:
+          "TechMty construyó nuestra web de ventas en línea aromantic.com.mx con una experiencia clara, atractiva y lista para vender.",
       }
     };
 
